@@ -1,4 +1,5 @@
 body{
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
@@ -12,25 +13,46 @@ body{
     background-color: white;
     border-radius: 20px;
     box-shadow: 1px 1px 32px 12px rgba(179, 179, 179, 0.1);
-    
+    margin-top: 20%;
 }
-
+/* **************** */
+/* leftside box */
 #weather-box-left{
     display: flex;
     flex-direction: column;
 }
-#search-bar{
-    width: 70%;
-    background-color: rgba(232, 232, 232, 0.462);
-    font-size: 15px;
-    padding: 5px 10px;
+
+#current-city{
+    font-size: 30px;
+    padding: 8% 0px 0px 5%;
+}
+.fa-solid{
+    color: rgb(147, 147, 147);
+}
+#temp-list{
+    padding-left: 8%;
 }
 #main-temp{
     font-size: 60px;
+    font-weight: 400;
+}
+.temp{
+    text-align: center;
+    padding-top: 10px;
+    font-size: 18px;
+}
+.temp-unit{
+    
+    cursor: pointer;
+    transition: all 1300ms ease-in-out;
+}
+.temp-unit:hover{
+    text-decoration: underline;
+    
 }
 #weather-box-left-img{
     font-size: 120px;
-    margin-left: 8%;
+    padding-left: 8%;
 }
 #weather-box-left h1{
     font-size: 70px;
@@ -42,22 +64,49 @@ body{
 #weather-box-left-date{
     padding-left: 8%;
 }
+.time-zone{
+    color: rgb(147, 147, 147);
+}
 #left-side-line{
     opacity: 0.1;
 }
+#weather-box-left-detail{
+    padding-left: 5%;
+}
 
 
-
-
-
+/* **************** */
+/* rightside box */
 #weather-box-right{
     background-color: rgb(240, 244, 247);
-    padding: 0px;
+    padding-top: 3%;
 }
+.right-top-small-title{
+    font-size: 14px;
+}
+#brand-logo-name{
+    font-size: 20px;
+    font-weight: 500;
+    font-style: italic;
+}
+#weather-box-right-top p span:nth-child(1){
+    color: rgb(147, 147, 147);
+}
+#search-form i {
+    cursor: pointer;
+}
+#search-bar {
+    width: 75%;
+    background-color: rgba(255, 255, 255, 0.328);
+    font-size: 12px;
+    padding: 8px 18px;
+    box-shadow: 1px 1px 10px 1px rgba(211, 211, 211, 0.1);
+}
+/* 7 days forecast */
 #weather-forecast{
     margin: 0px auto;
     width: 100%;
-    height: 25%;
+    height: 22%;
     font-size: 10px;
     text-align: center;
 }
@@ -67,7 +116,6 @@ body{
 .forecast-day{
     background-color: white;
     border-radius: 10px;
-    
 }
 .forecast-day p:nth-child(1){
     font-size: 13px;
@@ -75,6 +123,32 @@ body{
 .forecast-day i{
     font-size: 30px;
 }
-#weather-detail-list{
-    width: 100%;
+
+/* weather detail */
+#weather-detail{
+    font-size: 18px;
+    font-weight: 400;
 }
+.weather-detail-list li{
+    width: 29.3%;
+    font-size: 13px;
+}
+.weather-detail-list li p{
+    padding-left: 3%;
+    
+}
+.forecast-detail{
+    color: rgb(147, 147, 147);
+    padding-top: 8%;
+}
+
+.detail{
+    font-size: 45px;
+    font-weight: 300;
+    
+}
+.sunrise-set-time{
+    font-size: 22px;
+    font-weight: 300;
+}
+
