@@ -1,13 +1,7 @@
 body{
     font-family: 'Roboto', sans-serif;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
     background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(207, 224, 231) 90%);
 }
-
-
 .container{
     height: 70vh;
     background-color: white;
@@ -21,10 +15,9 @@ body{
     display: flex;
     flex-direction: column;
 }
-
 #current-city{
     font-size: 30px;
-    padding: 8% 0px 0px 5%;
+    padding: 8.5% 0px 0px 5%;
 }
 .fa-solid{
     color: rgb(147, 147, 147);
@@ -36,19 +29,21 @@ body{
     font-size: 60px;
     font-weight: 400;
 }
+#celsius{
+    font-weight: 400;
+}
 .temp{
     text-align: center;
     padding-top: 10px;
     font-size: 18px;
 }
 .temp-unit{
-    
     cursor: pointer;
-    transition: all 1300ms ease-in-out;
+    text-decoration: none;
+    transition: all 300ms ease-in-out;
 }
 .temp-unit:hover{
     text-decoration: underline;
-    
 }
 #weather-box-left-img{
     font-size: 120px;
@@ -73,24 +68,26 @@ body{
 #weather-box-left-detail{
     padding-left: 5%;
 }
-
-
 /* **************** */
 /* rightside box */
 #weather-box-right{
-    background-color: rgb(240, 244, 247);
+    background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(232, 243, 248) 90%);
     padding-top: 3%;
 }
 .right-top-small-title{
-    font-size: 14px;
+    font-size: 12px;
 }
 #brand-logo-name{
     font-size: 20px;
     font-weight: 500;
     font-style: italic;
 }
-#weather-box-right-top p span:nth-child(1){
+.light-content{
     color: rgb(147, 147, 147);
+    font-weight: 300;
+}
+.dark-content{
+    font-weight: 400;
 }
 #search-form i {
     cursor: pointer;
@@ -123,7 +120,6 @@ body{
 .forecast-day i{
     font-size: 30px;
 }
-
 /* weather detail */
 #weather-detail{
     font-size: 18px;
@@ -135,20 +131,32 @@ body{
 }
 .weather-detail-list li p{
     padding-left: 3%;
-    
 }
 .forecast-detail{
     color: rgb(147, 147, 147);
     padding-top: 8%;
 }
-
 .detail{
     font-size: 45px;
     font-weight: 300;
-    
 }
 .sunrise-set-time{
     font-size: 22px;
     font-weight: 300;
 }
-
+#button-sign{
+    font-family: Courier;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
+#button-sign a{
+    text-decoration: none;
+    color: rgb(147, 147, 147);
+    transition: all 300ms ease-in-out;
+    
+}
+#button-sign a:hover{
+    color: black;
+    text-decoration: underline;
+}

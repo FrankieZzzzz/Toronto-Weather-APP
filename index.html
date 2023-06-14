@@ -22,7 +22,7 @@
   </head>
   <body>
     <div class="container row mx-auto p-0 ps-3 mt-5">
-      <section id="weather-box-left" class="col-3 mt-4 ps-2">
+      <section id="weather-box-left" class="col-3 mt-3 ps-4">
         <p id="current-city">North York</p>
         <i id="weather-box-left-img">☀️</i>
         <ul class="fw-light d-flex" id="temp-list">
@@ -42,11 +42,11 @@
       <section id="weather-box-right" class="container col-9 row m-0">
         <nav class="d-flex ms-5 align-items-center" id="weather-box-right-top">
           <p class="col-3" id="brand-logo-name">Toronto Forecast</p>
-          <i class="pe-2 fa-solid fa-location-dot pb-3"></i>
-          <p class="col-3 right-top-small-title"><span>Weather in</span> <span>North York</span></p>
-          <p class="col-2 right-top-small-title"><span>EN</span> / <span>CN</span></p>
-          <form action="" method="get" class="col-3 mb-3" id="search-form">
-            <input type="text" class="border-0 rounded-5" autofocus="on" id="search-bar" placeholder="Search for place" />
+          <i class="col-0 pe-2 fa-solid fa-location-dot pb-3"></i>
+          <p class="col-3 right-top-small-title"><span class="light-content">Weather in</span> <span class="dark-content">North York</span></p>
+          <p class="col-1 right-top-small-title"><span class="dark-content">EN</span> / <span class="light-content">CN</span></p>
+          <form action="" method="get" class="col-4 mb-3 ms-2" id="search-form">
+            <input type="text" class="border-0 rounded-5" id="search-bar" placeholder="Search for place" />
             <i class="fa-solid fa-magnifying-glass ps-2"></i>
           </form>
         </nav>
@@ -121,8 +121,8 @@
           </li>
         </ul>
       </section>
+      <p id="button-sign"><a href="https://github.com/FrankieZzzzz/Vanilla-Weather-APP">Open-source code</a> by Frankie Zhong</p>
     </div>
-
     <script src="src/js.js"></script>
   </body>
 </html>
