@@ -1,0 +1,80 @@
+body{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(207, 224, 231) 90%);
+}
+
+
+.container{
+    height: 70vh;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 1px 1px 32px 12px rgba(179, 179, 179, 0.1);
+    
+}
+
+#weather-box-left{
+    display: flex;
+    flex-direction: column;
+}
+#search-bar{
+    width: 70%;
+    background-color: rgba(232, 232, 232, 0.462);
+    font-size: 15px;
+    padding: 5px 10px;
+}
+#main-temp{
+    font-size: 60px;
+}
+#weather-box-left-img{
+    font-size: 120px;
+    margin-left: 8%;
+}
+#weather-box-left h1{
+    font-size: 70px;
+}
+.temp{
+    padding-top: 12px;
+    padding-left: 8px;
+}
+#weather-box-left-date{
+    padding-left: 8%;
+}
+#left-side-line{
+    opacity: 0.1;
+}
+
+
+
+
+
+#weather-box-right{
+    background-color: rgb(240, 244, 247);
+    padding: 0px;
+}
+#weather-forecast{
+    margin: 0px auto;
+    width: 100%;
+    height: 25%;
+    font-size: 10px;
+    text-align: center;
+}
+#weather-forecast li{
+    width: 12%;
+}
+.forecast-day{
+    background-color: white;
+    border-radius: 10px;
+    
+}
+.forecast-day p:nth-child(1){
+    font-size: 13px;
+}
+.forecast-day i{
+    font-size: 30px;
+}
+#weather-detail-list{
+    width: 100%;
+}

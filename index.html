@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css reset -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/reset-css@3.0.0/reset.min.css" />
+    <!--External css-->
+    <link rel="stylesheet" href="src/style.css" type="text/css" />
+    <!-- google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- icon kit -->
+    <script src="https://kit.fontawesome.com/95ae3d12b8.js" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+
+    <title>Vanilla-Weather-APP</title>
+  </head>
+  <body>
+    <div class="container row mx-auto mt-5 rounded-1 p-0">
+      <section id="weather-box-left" class="col-4 mt-4 ps-4">
+        <form action="" method="get">
+          <input type="text" class="border-0 rounded-2" autofocus="on" id="search-bar" placeholder="Search for place" />
+          <input type="submit" value="🔍" class="border-0 rounded-0 p-1 ps-2 pe-2" />
+        </form>
+        <i id="weather-box-left-img">☀️</i>
+        <ul class="fw-light d-flex" id="temp-list">
+          <li id="main-temp">12</li>
+          <li class="temp fs-3">°C</li>
+          <li class="temp fs-3">/</li>
+          <li class="temp fs-3">°F</li>
+        </ul>
+        <p id="weather-box-left-date"><span>Monday</span>,<span> 9:00</span> <span>AM</span> / <span>PM</span></p>
+        <hr class="me-3" id="left-side-line" />
+        <ul id="weather-box-left-detail" class="pt-3">
+          <li class="pt-3">⛅️ Mostly Cloudy</li>
+          <li class="pt-3">☀️ Mostly Cloudy</li>
+          <li class="pt-3">🌤️ Mostly Cloudy</li>
+        </ul>
+      </section>
+      <section id="weather-box-right" class="container rounded-0 col-8 row m-0">
+        <nav class="row mt-4 pt-1 d-flex justify-content-start ms-4">
+          <p class="col-4"><span>📍</span>North York</p>
+          <p class="col-2">EN / CN</p>
+        </nav>
+        <ul id="weather-forecast" class="d-flex justify-content-center gx-2">
+          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sun</p>
+            <i>☀️</i>
+            <p>15°C / 5°C</p>
+          </li>
+          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sun</p>
+            <i>☀️</i>
+            <p>15°C / 5°C</p>
+          </li>
+          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sun</p>
+            <i>☀️</i>
+            <p>15°C / 5°C</p>
+          </li>
+          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sun</p>
+            <i>☀️</i>
+            <p>15°C / 5°C</p>
+          </li>
+          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sun</p>
+            <i>☀️</i>
+            <p>15°C / 5°C</p>
+          </li>
+          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sun</p>
+            <i>☀️</i>
+            <p>15°C / 5°C</p>
+          </li>
+          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sun</p>
+            <i>☀️</i>
+            <p>15°C / 5°C</p>
+          </li>
+        </ul>
+        <p class="ms-5 mb-0 mt-3">Weather Detail</p>
+        <ul class="d-flex justify-content-center gx-1 row" id="weather-detail-list">
+          <li class="forecast-day col-3 mx-2 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>UV Index</p>
+            <p>232</p>
+          </li>
+          <li class="forecast-day col-3 mx-2 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Wind Status</p>
+            <p>8.5 km/h</p>
+          </li>
+          <li class="forecast-day col-3 mx-2 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Sunrise & Sunset</p>
+            <p>6:00 AM</p>
+            <p>9:30 PM</p>
+          </li>
+        </ul>
+        <ul class="d-flex justify-content-center gx-1">
+          <li class="forecast-day col-3 mx-2 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Humidity</p>
+            <p>12%</p>
+            <p>Normal <span>🤜</span></p>
+          </li>
+          <li class="forecast-day col-3 mx-2 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Visibility</p>
+            <p>5KM</p>
+            <p>Average 😐</p>
+          </li>
+          <li class="forecast-day col-3 mx-2 px-4 pt-3 d-flex flex-column justify-content-center">
+            <p>Air Quality</p>
+            <p>105</p>
+            <p>Unhealthy</p>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <script src="src/js.js"></script>
+  </body>
+</html>
