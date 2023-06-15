@@ -18,20 +18,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
     <!--External css-->
     <link rel="stylesheet" href="src/style.css" type="text/css" />
+    <!-- AJAX -->
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <title>Vanilla-Weather-APP</title>
   </head>
   <body>
     <div class="container row mx-auto p-0 ps-3 mt-5">
       <section id="weather-box-left" class="col-3 mt-3 ps-4">
-        <p id="current-city">North York</p>
+        <p id="current-city"></p>
         <i id="weather-box-left-img">☀️</i>
         <ul class="fw-light d-flex" id="temp-list">
           <li id="main-temp">12</li>
           <li class="temp temp-unit" id="celsius">°C</li>
-          <li class="temp">/</li>
+          <li class="temp">|</li>
           <li class="temp temp-unit" id="fahrenheit">°F</li>
         </ul>
-        <p id="weather-box-left-date"><span>Monday</span>,<span class="time-zone"> 9:00</span> <span class="time-zone">AM</span> <span class="time-zone">/</span> <span class="time-zone">PM</span></p>
+        <p id="weather-box-left-date"><span>Monday</span>,<span class="time-zone"> 9:00</span><span class="time-zone">AM</span> <span class="time-zone">|</span> <span class="time-zone">PM</span></p>
         <hr class="me-3" id="left-side-line" />
         <ul id="weather-box-left-detail" class="pt-2">
           <li class="pt-4">⛅️ Mostly Cloudy</li>
@@ -111,7 +113,7 @@
           </li>
           <li class="forecast-day mx-2 px-4 d-flex flex-column">
             <p class="forecast-detail">Visibility</p>
-            <p class="detail">5KM</p>
+            <p><span class="detail">5</span>KM</p>
             <p>Average 😐</p>
           </li>
           <li class="forecast-day mx-1 px-4 d-flex flex-column">

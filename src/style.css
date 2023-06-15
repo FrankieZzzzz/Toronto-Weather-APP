@@ -33,9 +33,9 @@ body{
     font-weight: 400;
 }
 .temp{
-    text-align: center;
-    padding-top: 10px;
     font-size: 18px;
+    position: relative;
+    top: 4px;
 }
 .temp-unit{
     cursor: pointer;
