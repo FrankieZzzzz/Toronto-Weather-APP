@@ -1,23 +1,121 @@
+let apiKey = "b68e523348f19ea792b0abbee994f51c";
+let SheCodeApiKey = "9a4fe4bodeba6ca823c48bdb74t03dbe"
+//open weather-api's icon resolution is bad. But SheCodes weather icon looks good.  So I use both api...
 //get current location
 // window.addEventListener("load", _displayLocation)
 function _getCurrentLocation(position){
     let latCode = position.coords.latitude;
     let lonCode = position.coords.longitude;
-    let apiLocatUrl = `https://api.shecodes.io/weather/v1/current?lon=${lonCode}&lat=${latCode}&key=${apiKey}`;
-    axios.get(apiLocatUrl).then(_displayLocation)
+    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=metric`;
+    axios.get(apiLocatUrl).then(_displayLocation);  
+    let SheCodeApiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lonCode}&lat=${latCode}&key=${SheCodeApiKey}&units=metric`
+    axios.get(SheCodeApiUrl).then(_displayIcon);
 }
-function _displayLocation(position){
-    
-    let currentCity = position.data.city;
-    let currentCityTemp = position.data.temperature.current;
-    currentCityTemp = Math.round(currentCityTemp);
-    let displayCity = document.querySelector("#current-city");
-    let displayCityTemp = document.querySelector("#main-temp");
-    displayCity.innerHTML = currentCity;
-    displayCityTemp.innerHTML = currentCityTemp
-}
-navigator.geolocation.getCurrentPosition(_getCurrentLocation)
-let apiKey = "9a4fe4bodeba6ca823c48bdb74t03dbe"
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Toronto&key=${apiKey}&units=metric`;
-axios.get(apiUrl).then(_displayData)
+navigator.geolocation.getCurrentPosition(_getCurrentLocation);
 
+function _displayIcon(response){
+    
+    let getIcon = response.data.condition.icon;
+    let liftSideIcon = document.querySelector("#weather-box-left-img");
+    liftSideIcon.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${getIcon}.png`)
+}
+//show city weather on the page
+function _displayLocation(response){
+    //get response data
+    celsiusTemp = response.data.main.temp;
+
+    console.log(response.data);
+    let currentCity = response.data.name;
+    let currentCityTemp = celsiusTemp;
+    currentCityTemp = Math.round(currentCityTemp);
+    let description = response.data.weather[0].description;
+    let feelTemp = response.data.main.feels_like;
+    feelTemp = Math.round(feelTemp);
+    let pressure = response.data.main.pressure;
+    let cityWindData = response.data.wind.speed;
+    cityWindData = Math.round(cityWindData);
+    let cityHumidityData = response.data.main.humidity;
+    let dayMaxTemp = response.data.main.temp_max;
+    dayMaxTemp = Math.round(dayMaxTemp);
+    let dayMinTemp = response.data.main.temp_min;
+    dayMinTemp = Math.round(dayMinTemp);
+    // let sunRise = response.sys.sunrise
+    // sunRise = Math.round(dayMinTemp * 1000);
+    // console.log(response.data);
+    
+    //get html element
+    let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
+
+    let displayCityTemp = document.querySelector("#main-temp").innerHTML = currentCityTemp;
+
+    let rightSideLocation = document.querySelector(".inputLocation").innerHTML = currentCity;
+
+    let descriptionToday = document.querySelector("#weather-description").innerHTML = description;
+
+    let feelTemperature = document.querySelector("#weather-feeling-temp").innerHTML = feelTemp;
+
+    let windData = document.querySelector("#windData").innerHTML = cityWindData;
+
+    let humidityData = document.querySelector("#humidityData").innerHTML = cityHumidityData
+
+    let aPressure = document.querySelector("#weather-pressure").innerHTML = pressure;
+
+    let maxTemp = document.querySelector("#max-temp").innerHTML = dayMaxTemp;
+
+    let minTemp = document.querySelector("#min-temp").innerHTML = dayMinTemp;
+
+    // let sunriseTime = document.querySelector("#sunRise").innerHTML = sunRise;
+}
+
+//search engine
+let searchBtn = document.querySelector("#search-Btn").addEventListener("click", _searchCity)
+function _searchCity(event){
+    event.preventDefault();
+    let searchCity = document.querySelector("#search-bar").value;
+    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
+    axios.get(apiLocatUrl).then(_displayLocation);
+}
+
+window.addEventListener("load", _displayLocation);
+
+//********************************** */
+//get current time
+//get time data
+let current = new Date();
+let monthes = ["Janurary", "Feburary", "March", "April", "May", "Jun", "July", "August", "September", "Octorber","Norvenber", "December"];
+let weekdays = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+let currentDate = weekdays[current.getDay()];
+let currentDay = current.getDate();
+let currentMonth = monthes[current.getMonth()];
+let currentYear = current.getFullYear();
+let currentTime = current.toLocaleTimeString('en-US',{hour:'numeric', minute: 'numeric'})
+
+
+//change innerHTML
+let pageDate = document.querySelector("#current-date").innerHTML = currentDate;
+let pageMonth = document.querySelector("#weather-current-date").innerHTML = (`${currentMonth} ${currentDay}, ${currentYear}`);
+let pageTime = document.querySelector("#current-time").innerHTML = currentTime;
+
+//click C/F change temperature setting
+
+function _changeTempF(event){
+    event.preventDefault();
+    let temp = document.querySelector("#main-temp");
+    let fTemp = Math.round((celsiusTemp * 9) / 5 + 32);
+    temp.textContent = fTemp;
+    fahrenheitBtn.style.fontWeight = "400";
+    celsiusBtn.style.fontWeight = "300";
+}
+function _changeTempC(){
+    let temp = document.querySelector("#main-temp");
+    let cTemp = Math.round((temp.textContent - 32)* 5/9);
+    temp.textContent = cTemp;   
+    fahrenheitBtn.style.fontWeight = "300";
+    celsiusBtn.style.fontWeight = "400";
+};
+let celsiusTemp = null;
+
+let fahrenheitBtn = document.getElementById("fahrenheit");
+    fahrenheitBtn.addEventListener("click", _changeTempF);
+let celsiusBtn = document.getElementById("celsius");
+    celsiusBtn.addEventListener("click", _changeTempC);
