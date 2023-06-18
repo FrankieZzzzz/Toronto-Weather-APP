@@ -103,15 +103,18 @@ function _changeTempF(event){
     let temp = document.querySelector("#main-temp");
     let fTemp = Math.round((celsiusTemp * 9) / 5 + 32);
     temp.textContent = fTemp;
-    fahrenheitBtn.style.fontWeight = "400";
-    celsiusBtn.style.fontWeight = "300";
+    fahrenheitBtn.classList.add("active")
+    celsiusBtn.classList.remove("active")
+    
 }
-function _changeTempC(){
+function _changeTempC(event){
+    event.preventDefault();
     let temp = document.querySelector("#main-temp");
-    let cTemp = Math.round((temp.textContent - 32)* 5/9);
-    temp.textContent = cTemp;   
-    fahrenheitBtn.style.fontWeight = "300";
-    celsiusBtn.style.fontWeight = "400";
+    temp.textContent = Math.round(celsiusTemp);   
+    fahrenheitBtn.classList.remove("active")
+    celsiusBtn.classList.add("active")
+    
+    
 };
 let celsiusTemp = null;
 
