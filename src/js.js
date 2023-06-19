@@ -39,10 +39,27 @@ function _displayLocation(response){
     dayMaxTemp = Math.round(dayMaxTemp);
     let dayMinTemp = response.data.main.temp_min;
     dayMinTemp = Math.round(dayMinTemp);
-    // let sunRiseTime = new Date(response.data.sys.sunrise * 1000)
-    // sunRiseTime.substring(13,17)
-    // console.log(sunRiseTime);
-    // let sunRise = ;
+    let sunRiseTime = new Date(response.data.sys.sunrise * 1000);
+    let sunSetTime = new Date(response.data.sys.sunset * 1000)
+    let sunRiseHour = sunRiseTime.getHours();
+    let sunRiseMin = sunRiseTime.getMinutes();
+    if (sunRiseHour<10){
+        sunRiseHour = `0${sunRiseHour}`
+    }
+    if (sunRiseMin<10){
+        sunRiseMin = `0${sunRiseMin}`
+    }
+    let sunSetHour = sunSetTime.getHours();
+    let sunSetMin = sunSetTime.getMinutes();
+    if (sunSetHour<10){
+        sunSetHour = `0${sunSetHour}`
+    }
+    if (sunSetMin<10){
+        sunSetMin = `0${sunSetMin}`
+    }
+    let sunRise = `${sunRiseHour}:${sunRiseMin}`;
+    let sunSet = `${sunSetHour}:${sunSetMin}`;
+    
  
     
     //get html element
@@ -66,7 +83,9 @@ function _displayLocation(response){
 
     let minTemp = document.querySelector("#min-temp").innerHTML = dayMinTemp;
 
-    // let sunriseTime = document.querySelector("#sunRise").innerHTML = sunRise;
+    let sunriseTime = document.querySelector("#sunRise").innerHTML = sunRise;
+
+    let sunsetTime = document.querySelector("#sunSet").innerHTML = sunSet;
 }
 
 //search engine
