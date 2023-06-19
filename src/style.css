@@ -138,7 +138,7 @@ body{
     color: rgb(147, 147, 147);
     font-weight: 300;
 }
-.enBtn.cnB,
+.enBtn,
 .inputLocation{
     font-weight: 400;
     color: #504982;
@@ -186,16 +186,37 @@ body{
     padding-top: 8%;
     
 }
+.sunriseIcon{
+    position: relative;
+    top: 3px;
+}
+.sunsetIcon{
+    rotate: 180deg;
+    position: relative;
+    top: 5px;
+}
 .detail{
     font-size: 45px;
     font-weight: 300;
     color: #504982;
 }
+.material-symbols-outlined{
+    position: relative;
+    top: 5px;
+}
 .sunrise-set-time,
 .max-min-temp{
-    font-size: 22px;
+    font-size: 25px;
     font-weight: 300;
     color: #504982;
+}
+#minTempUnit{
+    rotate: 180deg;
+}
+.timeUnit{
+    color: black;
+    font-size: 13px;
+    font-weight: 300;
 }
 #button-sign{
     font-family: Courier;

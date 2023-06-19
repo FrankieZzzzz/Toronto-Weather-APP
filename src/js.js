@@ -39,9 +39,11 @@ function _displayLocation(response){
     dayMaxTemp = Math.round(dayMaxTemp);
     let dayMinTemp = response.data.main.temp_min;
     dayMinTemp = Math.round(dayMinTemp);
-    // let sunRise = response.sys.sunrise
-    // sunRise = Math.round(dayMinTemp * 1000);
-    // console.log(response.data);
+    // let sunRiseTime = new Date(response.data.sys.sunrise * 1000)
+    // sunRiseTime.substring(13,17)
+    // console.log(sunRiseTime);
+    // let sunRise = ;
+ 
     
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;

@@ -114,8 +114,8 @@
           </li>
           <li class="forecast-day mx-2 px-3 d-flex flex-column">
             <p class="forecast-detail">Sunrise & Sunset</p>
-            <p class="sunrise-set-time" id="sunRise">6:00 AM</p>
-            <p class="sunrise-set-time" id="sunDown">9:30 PM</p>
+            <p class="sunrise-set-time"><span class="material-symbols-outlined sunriseIcon"> wb_twilight </span> <span id="sunRise"></span> <span class="timeUnit">AM</span></p>
+            <p class="sunrise-set-time"><span class="material-symbols-outlined sunsetIcon"> wb_twilight </span> <span id="sunDown"></span> <span class="timeUnit">PM</span></p>
           </li>
         </ul>
         <ul class="d-flex justify-content-center mb-5 weather-detail-list">
@@ -131,8 +131,8 @@
           </li>
           <li class="forecast-day mx-2 px-3 d-flex flex-column">
             <p class="forecast-detail">Temperature Max | Min</p>
-            <p class="max-min-temp">Max: <span id="max-temp"></span>°C</p>
-            <p class="max-min-temp">Min: <span id="min-temp"></span>°C</p>
+            <p class="max-min-temp"><span class="material-symbols-outlined"> upgrade </span>: <span id="max-temp"></span>°C</p>
+            <p class="max-min-temp"><span class="material-symbols-outlined" id="minTempUnit"> upgrade </span>: <span id="min-temp"></span>°C</p>
           </li>
         </ul>
       </section>
