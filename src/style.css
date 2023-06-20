@@ -157,7 +157,7 @@ body{
 .forecast-day{
     background-color: white;
     border-radius: 10px;
-    width: 15.6%;
+    width: 13.3%;
 }
 .forecast-day p{
     font-size: 15px;
@@ -178,15 +178,27 @@ body{
     font-style: italic;
     
 }
-.weather-detail-list,
-.weather-detail-hour{
+.weather-detail-list{
+    margin-bottom: 20px;
+}
+.weather-detail-img{
     height: 220px;
 }
-.weather-detail-hour{
-    width: 89%;
+.weather-detail-img{
+    width: 94%;
     margin: 0px auto;
-    background-color: white;
     border-radius: 10px;
+    
+}
+#displayImgGalery,
+#imgForecastLink{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+#displayImgGalery{
+    object-position:0% 35%;
+    object-fit: cover
 }
 .weather-detail-list li{
     width: 29.3%;
@@ -198,7 +210,6 @@ body{
 .forecast-detail{
     color: rgb(147, 147, 147);
     padding-top: 8%;
-    
 }
 .sunriseIcon{
     position: relative;

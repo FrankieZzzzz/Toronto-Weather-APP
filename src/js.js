@@ -1,34 +1,36 @@
 let apiKey = "b68e523348f19ea792b0abbee994f51c";
 let SheCodeApiKey = "9a4fe4bodeba6ca823c48bdb74t03dbe"
-//get current location
-// window.addEventListener("load", _displayLocation)
+
 function _getCurrentLocation(position){
     let latCode = position.coords.latitude;
     let lonCode = position.coords.longitude;
     let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=metric`;
     axios.get(apiLocatUrl).then(_displayLocation);  
-    // let SheCodeApiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lonCode}&lat=${latCode}&key=${SheCodeApiKey}&units=metric`
-    // axios.get(SheCodeApiUrl).then(_displayIcon);
 }
 navigator.geolocation.getCurrentPosition(_getCurrentLocation);
+//search engine
+let searchBtn = document.querySelector("#search-Btn").addEventListener("click", _searchCity)
+function _searchCity(event){
+    event.preventDefault();
+    let searchCity = document.querySelector("#search-bar").value;
+    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
+    axios.get(apiLocatUrl).then(_displayLocation);
+}
+window.addEventListener("load", _displayLocation);
 
-// function _displayIcon(response){
-//     let getIcon = response.data.condition.icon;
-//     let liftSideIcon = document.querySelector("#weather-box-left-img");
-//     liftSideIcon.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${getIcon}.png`)
-// }
-
+//********************************** */
 //show city weather on the page
 function _displayLocation(response){
+    //get biggest weather icon
     let getIcon = response.data.weather[0].icon;
     let liftSideIcon = document.querySelector("#weather-box-left-img");
     liftSideIcon.setAttribute("src", `https://openweathermap.org/img/wn/${getIcon}@2x.png`)
 
-    //get response data
-    
+    //get response data for location and temp
     celsiusTemp = response.data.main.temp;
     let currentCity = response.data.name;
     let currentCountry = response.data.sys.country;
+    console.log(response.data);
     let currentCityTemp = celsiusTemp;
     currentCityTemp = Math.round(currentCityTemp);
     let description = response.data.weather[0].description;
@@ -42,28 +44,39 @@ function _displayLocation(response){
     dayMaxTemp = Math.round(dayMaxTemp);
     let dayMinTemp = response.data.main.temp_min;
     dayMinTemp = Math.round(dayMinTemp);
-    let sunRiseTime = new Date(response.data.sys.sunrise * 1000);
+
+    //sunrise and set time
+    let sunRiseTime = new Date(response.data.sys.sunrise * 1000)
     let sunSetTime = new Date(response.data.sys.sunset * 1000)
-    let sunRiseHour = sunRiseTime.getHours();
-    let sunRiseMin = sunRiseTime.getMinutes();
-    if (sunRiseHour<10){
-        sunRiseHour = `0${sunRiseHour}`
-    }
-    if (sunRiseMin<10){
-        sunRiseMin = `0${sunRiseMin}`
-    }
-    let sunSetHour = sunSetTime.getHours();
-    let sunSetMin = sunSetTime.getMinutes();
-    if (sunSetHour<10){
-        sunSetHour = `0${sunSetHour}`
-    }
-    if (sunSetMin<10){
-        sunSetMin = `0${sunSetMin}`
-    }
-    let sunRise = `${sunRiseHour}:${sunRiseMin}`;
-    let sunSet = `${sunSetHour}:${sunSetMin}`;
+    //convert time to 12h
+    let sunRiseHour = sunRiseTime.getHours()
+    let sunRiseMin = sunRiseTime.getMinutes()
+    sunRiseHour = sunRiseHour % 12;
+    sunRiseHour = sunRiseHour ? sunRiseHour : 12;
+    sunRiseMin = sunRiseMin.toString().padStart(2, '0');
+    let riseTime = sunRiseHour + ':' + sunRiseMin;
+
+    let sunSetHour = sunSetTime.getHours()
+    let sunSetMin = sunSetTime.getMinutes()
+    sunSetHour = sunSetHour % 12;
+    sunSetHour = sunSetHour ? sunSetHour : 12;
+    sunSetMin = sunSetMin.toString().padStart(2, '0');
+    let setTime = sunSetHour + ':' + sunSetMin;
     
-    
+    //set photo gallery
+    let unsplashKey = "C3l2wm2Z54GRQ75bhadpUU5IvPQYrO5TeSJZJ3WkL48"
+    let unsplashUrl = `https://api.unsplash.com/search/photos?page=1&orientation=landscape&query=${currentCity}&client_id=${unsplashKey}`;
+    axios.get(unsplashUrl).then(_displayImg)
+    function _displayImg(response){
+        console.log(response.data);
+        let imgLinkUrl = response.data.results[0].urls.full;
+        let imgDescribetion = response.data.results[0].description;
+        // console.log(imgLinkUrl);
+        let dispalyCityImg = document.querySelector("#displayImgGalery")
+        dispalyCityImg.setAttribute("src", imgLinkUrl)
+        dispalyCityImg.setAttribute("alt", imgDescribetion)
+    }
+        
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
 
@@ -85,14 +98,14 @@ function _displayLocation(response){
 
     let minTemp = document.querySelector("#min-temp").innerHTML = dayMinTemp;
 
-    let sunriseTime = document.querySelector("#sunRise").innerHTML = sunRise;
+    let sunriseTime = document.querySelector("#sunRise").innerHTML = riseTime;
 
-    let sunsetTime = document.querySelector("#sunSet").innerHTML = sunSet;
+    let sunsetTime = document.querySelector("#sunSet").innerHTML = setTime;
 
     let countryName = document.querySelector("#current-country").innerHTML = currentCountry;
     _getForecast(response.data.coord)
-    
 }
+//********************************** */
 //weather forecast data
 function _getForecast(coordinates){
     let oneCallApiKey = "ebef9ca4a8de66ed586fac628fade056"
@@ -107,14 +120,14 @@ function _formatDay(timeFormat){
 }
 //weather forecast add html
 function _displayForecast(response){
-    console.log(response.data);
     let forecastData = response.data.daily;
-    let weatherForecastBox = document.querySelector("#weather-forecast");
+    let forecastDataHourly = response.data.hourly;
+    
     let forecastContent = "";
-    console.log(forecastData);
-    // let forecastIconList = 
     forecastData.forEach(function(dailyData, index){
-        if(index < 6){
+        maxTempForecast = dailyData.temp.max;
+        minTempForecast = dailyData.temp.min;
+        if(index < 7){
         forecastContent = forecastContent + `
         <div class="forecast-day mx-1 px-4 d-flex flex-column justify-content-center">
             <p>${_formatDay(dailyData.dt)}</p>
@@ -126,21 +139,10 @@ function _displayForecast(response){
         </div>
         `; 
         }
-    
     })
+    let weatherForecastBox = document.querySelector("#weather-forecast");
     weatherForecastBox.innerHTML = forecastContent;
 }
-
-//search engine
-let searchBtn = document.querySelector("#search-Btn").addEventListener("click", _searchCity)
-function _searchCity(event){
-    event.preventDefault();
-    let searchCity = document.querySelector("#search-bar").value;
-    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
-    axios.get(apiLocatUrl).then(_displayLocation);
-}
-window.addEventListener("load", _displayLocation);
-
 //********************************** */
 //get current time
 //get time data
@@ -159,7 +161,6 @@ let pageMonth = document.querySelector("#weather-current-date").innerHTML = (`${
 let pageTime = document.querySelector("#current-time").innerHTML = currentTime;
 
 //click C/F change temperature setting
-
 function _changeTempF(event){
     event.preventDefault();
     let temp = document.querySelector("#main-temp");
@@ -167,6 +168,14 @@ function _changeTempF(event){
     temp.textContent = fTemp;
     fahrenheitBtn.classList.add("active")
     celsiusBtn.classList.remove("active")
+
+    let forecastListMax = document.querySelector("#weather-temp-max");
+    let fForecastTemp = Math.round((maxTempForecast * 9) / 5 + 32);
+    forecastListMax.innerHTML = fForecastTemp;
+
+    let forecastListMin = document.querySelector("#weather-temp-min")
+    let cForecastTemp = Math.round((minTempForecast * 9) / 5 + 32);
+    forecastListMin.innerHTML = cForecastTemp;
 }
 function _changeTempC(event){
     event.preventDefault();
@@ -174,8 +183,17 @@ function _changeTempC(event){
     temp.textContent = Math.round(celsiusTemp);   
     fahrenheitBtn.classList.remove("active")
     celsiusBtn.classList.add("active")
+
+    let forecastListMax = document.querySelector("#weather-temp-max");
+    forecastListMax.innerHTML = Math.round(maxTempForecast);  
+    
+    let forecastListMin = document.querySelector("#weather-temp-min")
+    forecastListMin.innerHTML = Math.round(minTempForecast);  
+
 };
 let celsiusTemp = null;
+let maxTempForecast = null;
+let minTempForecast = null;
 
 let fahrenheitBtn = document.getElementById("fahrenheit");
     fahrenheitBtn.addEventListener("click", _changeTempF);

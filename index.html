@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- css reset -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/reset-css@3.0.0/reset.min.css" />
     <!-- google font -->
@@ -70,9 +71,7 @@
         </nav>
         <div id="weather-forecast" class="row"></div>
         <p class="ms-5 mb-0 mt-2" id="weather-detail">Weather Detail</p>
-        <div class="weather-detail-hour row">
-          <div class="col-12"></div>
-        </div>
+
         <ul class="d-flex justify-content-center weather-detail-list">
           <li class="forecast-day mx-2 px-3 d-flex flex-column">
             <p class="forecast-detail">Temperature Max | Min</p>
@@ -86,10 +85,15 @@
           </li>
           <li class="forecast-day mx-2 px-3 d-flex flex-column">
             <p class="forecast-detail">Sunrise & Sunset</p>
-            <p><span class="material-symbols-outlined sunriseIcon"> wb_twilight </span> <span id="sunRise" class="sunrise-set-time"></span> <span class="timeUnit">AM</span></p>
-            <p><span class="material-symbols-outlined sunsetIcon"> wb_twilight </span> <span id="sunSet" class="sunrise-set-time"></span> <span class="timeUnit">PM</span></p>
+            <p><span class="material-symbols-outlined sunriseIcon"> wb_twilight </span> <span id="sunRise" class="sunrise-set-time"></span> <span class="timeUnit"></span>AM</p>
+            <p><span class="material-symbols-outlined sunsetIcon"> wb_twilight </span> <span id="sunSet" class="sunrise-set-time"></span> <span class="timeUnit"></span>PM</p>
           </li>
         </ul>
+        <div class="weather-detail-img row">
+          <a class="col-12 d-flex" id="imgForecastLink" href="#">
+            <img class="col-12" src="" alt="" id="displayImgGalery" />
+          </a>
+        </div>
       </section>
     </div>
     <p id="button-sign"><a href="https://github.com/FrankieZzzzz/Vanilla-Weather-APP"> Open-source code</a> by Frankie Zhong</p>
