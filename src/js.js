@@ -1,6 +1,5 @@
 let apiKey = "b68e523348f19ea792b0abbee994f51c";
 let SheCodeApiKey = "9a4fe4bodeba6ca823c48bdb74t03dbe"
-//open weather-api's icon resolution is bad. But SheCodes weather icon looks good.  So I use both api...
 //get current location
 // window.addEventListener("load", _displayLocation)
 function _getCurrentLocation(position){
@@ -8,24 +7,28 @@ function _getCurrentLocation(position){
     let lonCode = position.coords.longitude;
     let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=metric`;
     axios.get(apiLocatUrl).then(_displayLocation);  
-    let SheCodeApiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lonCode}&lat=${latCode}&key=${SheCodeApiKey}&units=metric`
-    axios.get(SheCodeApiUrl).then(_displayIcon);
+    // let SheCodeApiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lonCode}&lat=${latCode}&key=${SheCodeApiKey}&units=metric`
+    // axios.get(SheCodeApiUrl).then(_displayIcon);
 }
 navigator.geolocation.getCurrentPosition(_getCurrentLocation);
 
-function _displayIcon(response){
-    
-    let getIcon = response.data.condition.icon;
-    let liftSideIcon = document.querySelector("#weather-box-left-img");
-    liftSideIcon.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${getIcon}.png`)
-}
+// function _displayIcon(response){
+//     let getIcon = response.data.condition.icon;
+//     let liftSideIcon = document.querySelector("#weather-box-left-img");
+//     liftSideIcon.setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${getIcon}.png`)
+// }
+
 //show city weather on the page
 function _displayLocation(response){
-    //get response data
-    celsiusTemp = response.data.main.temp;
+    let getIcon = response.data.weather[0].icon;
+    let liftSideIcon = document.querySelector("#weather-box-left-img");
+    liftSideIcon.setAttribute("src", `https://openweathermap.org/img/wn/${getIcon}@2x.png`)
 
-    console.log(response.data);
+    //get response data
+    
+    celsiusTemp = response.data.main.temp;
     let currentCity = response.data.name;
+    let currentCountry = response.data.sys.country;
     let currentCityTemp = celsiusTemp;
     currentCityTemp = Math.round(currentCityTemp);
     let description = response.data.weather[0].description;
@@ -60,7 +63,6 @@ function _displayLocation(response){
     let sunRise = `${sunRiseHour}:${sunRiseMin}`;
     let sunSet = `${sunSetHour}:${sunSetMin}`;
     
- 
     
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
@@ -86,6 +88,47 @@ function _displayLocation(response){
     let sunriseTime = document.querySelector("#sunRise").innerHTML = sunRise;
 
     let sunsetTime = document.querySelector("#sunSet").innerHTML = sunSet;
+
+    let countryName = document.querySelector("#current-country").innerHTML = currentCountry;
+    _getForecast(response.data.coord)
+    
+}
+//weather forecast data
+function _getForecast(coordinates){
+    let oneCallApiKey = "ebef9ca4a8de66ed586fac628fade056"
+    let weatherForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${oneCallApiKey}&units=metric`
+    axios.get(weatherForecastUrl).then(_displayForecast);
+}
+function _formatDay(timeFormat){
+    let current = new Date(timeFormat * 1000);
+    let day = current.getDay();
+    let weekdays = ["Sun", "Mon","Tue","Wed","Thu","Fri","Sat"];
+    return weekdays[day]
+}
+//weather forecast add html
+function _displayForecast(response){
+    console.log(response.data);
+    let forecastData = response.data.daily;
+    let weatherForecastBox = document.querySelector("#weather-forecast");
+    let forecastContent = "";
+    console.log(forecastData);
+    // let forecastIconList = 
+    forecastData.forEach(function(dailyData, index){
+        if(index < 6){
+        forecastContent = forecastContent + `
+        <div class="forecast-day mx-1 px-4 d-flex flex-column justify-content-center">
+            <p>${_formatDay(dailyData.dt)}</p>
+            <img src="https://openweathermap.org/img/wn/${dailyData.weather[0].icon}@2x.png" alt="">
+            <div id="weather-forecast-temp">
+                <span id="weather-temp-max">${Math.round(dailyData.temp.max)}°</span> /
+                <span id="weather-temp-min">${Math.round(dailyData.temp.min)}°</span>
+            </div>
+        </div>
+        `; 
+        }
+    
+    })
+    weatherForecastBox.innerHTML = forecastContent;
 }
 
 //search engine
@@ -96,7 +139,6 @@ function _searchCity(event){
     let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
     axios.get(apiLocatUrl).then(_displayLocation);
 }
-
 window.addEventListener("load", _displayLocation);
 
 //********************************** */
@@ -110,7 +152,6 @@ let currentDay = current.getDate();
 let currentMonth = monthes[current.getMonth()];
 let currentYear = current.getFullYear();
 let currentTime = current.toLocaleTimeString('en-US',{hour:'numeric', minute: 'numeric'})
-
 
 //change innerHTML
 let pageDate = document.querySelector("#current-date").innerHTML = currentDate;
@@ -126,7 +167,6 @@ function _changeTempF(event){
     temp.textContent = fTemp;
     fahrenheitBtn.classList.add("active")
     celsiusBtn.classList.remove("active")
-    
 }
 function _changeTempC(event){
     event.preventDefault();
@@ -134,8 +174,6 @@ function _changeTempC(event){
     temp.textContent = Math.round(celsiusTemp);   
     fahrenheitBtn.classList.remove("active")
     celsiusBtn.classList.add("active")
-    
-    
 };
 let celsiusTemp = null;
 

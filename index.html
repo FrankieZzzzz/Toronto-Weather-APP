@@ -29,7 +29,10 @@
           <input type="text" class="border-0 rounded-5" id="search-bar" placeholder="Search for place" autocomplete="off" />
           <button id="search-Btn"><i class="fa-solid fa-magnifying-glass ps-2" id="search-icon"></i></button>
         </form>
-        <p id="current-city"></p>
+        <div>
+          <span id="current-city"> </span>
+          <span id="current-country"> </span>
+        </div>
         <img src="" alt="heroImg" id="weather-box-left-img" />
         <ul class="fw-light d-flex" id="temp-list">
           <li id="main-temp"></li>
@@ -46,15 +49,16 @@
         </p>
         <hr class="me-3" id="left-side-line" />
         <ul id="weather-box-left-detail" class="pt-2">
-          <li class="pt-4"><i class="fa-sharp fa-solid fa-shirt"></i> : <span id="weather-feeling-temp"></span>°C</li>
+          <li class="pt-4"><i class="fa-solid fa-wind"></i> : <span id="windData"></span>km/h</li>
           <li class="pt-4"><i class="fa-sharp fa-solid fa-campground"></i> : <span id="weather-description"></span></li>
           <li class="pt-4"><i class="fa-sharp fa-solid fa-earth-americas"></i> : <span id="weather-pressure"></span>hPa</li>
+          <li class="pt-4"><i class="fa-sharp fa-solid fa-shirt"></i> : <span id="weather-feeling-temp"></span>°C</li>
         </ul>
       </section>
       <section id="weather-box-right" class="container col-9 row m-0">
         <nav class="d-flex ms-5 align-items-center" id="weather-box-right-top">
           <p class="col-3" id="brand-logo-name">Toronto Forecast</p>
-          <i class="col-0 pe-2 fa-solid fa-location-dot pb-3"></i>
+          <i class="col-0 pe-2 fa-solid fa-location-dot"></i>
           <p class="col-3 right-top-small-title">
             <span class="cnBtn">Weather in</span>
             <span class="inputLocation"></span>
@@ -64,75 +68,26 @@
             <span class="cnBtn">CN</span>
           </p>
         </nav>
-        <ul id="weather-forecast" class="d-flex justify-content-center gx-2">
-          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
-            <p class="fw-semibold">Sun</p>
-            <i>☀️</i>
-            <p>15°C / 5°C</p>
-          </li>
-          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
-            <p class="fw-semibold">Sun</p>
-            <i>☀️</i>
-            <p>15°C / 5°C</p>
-          </li>
-          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
-            <p class="fw-semibold">Sun</p>
-            <i>☀️</i>
-            <p>15°C / 5°C</p>
-          </li>
-          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
-            <p class="fw-semibold">Sun</p>
-            <i>☀️</i>
-            <p>15°C / 5°C</p>
-          </li>
-          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
-            <p class="fw-semibold">Sun</p>
-            <i>☀️</i>
-            <p>15°C / 5°C</p>
-          </li>
-          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
-            <p class="fw-semibold">Sun</p>
-            <i>☀️</i>
-            <p>15°C / 5°C</p>
-          </li>
-          <li class="forecast-day mx-1 px-4 pt-3 d-flex flex-column justify-content-center">
-            <p class="fw-semibold">Sun</p>
-            <i>☀️</i>
-            <p>15°C / 5°C</p>
-          </li>
-        </ul>
+        <div id="weather-forecast" class="row"></div>
         <p class="ms-5 mb-0 mt-2" id="weather-detail">Weather Detail</p>
+        <div class="weather-detail-hour row">
+          <div class="col-12"></div>
+        </div>
         <ul class="d-flex justify-content-center weather-detail-list">
-          <li class="forecast-day mx-2 px-3 d-flex flex-column">
-            <p class="forecast-detail">Wind Status</p>
-            <p><span class="detail" id="windData">8.5</span> km/h</p>
-          </li>
-          <li class="forecast-day mx-2 px-4 d-flex flex-column">
-            <p class="forecast-detail">Humidity</p>
-            <p class="detail"><span id="humidityData">12</span>%</p>
-            <p>Normal <span>🤜</span></p>
-          </li>
-          <li class="forecast-day mx-2 px-3 d-flex flex-column">
-            <p class="forecast-detail">Sunrise & Sunset</p>
-            <p class="sunrise-set-time"><span class="material-symbols-outlined sunriseIcon"> wb_twilight </span> <span id="sunRise"></span> <span class="timeUnit">AM</span></p>
-            <p class="sunrise-set-time"><span class="material-symbols-outlined sunsetIcon"> wb_twilight </span> <span id="sunSet"></span> <span class="timeUnit">PM</span></p>
-          </li>
-        </ul>
-        <ul class="d-flex justify-content-center mb-5 weather-detail-list">
-          <li class="forecast-day mx-2 px-4 d-flex flex-column">
-            <p class="forecast-detail">Visibility</p>
-            <p><span class="detail">5</span>KM</p>
-            <p>Average 😐</p>
-          </li>
-          <li class="forecast-day mx-2 px-4 d-flex flex-column">
-            <p class="forecast-detail">Air Quality</p>
-            <p class="detail">105</p>
-            <p>Unhealthy</p>
-          </li>
           <li class="forecast-day mx-2 px-3 d-flex flex-column">
             <p class="forecast-detail">Temperature Max | Min</p>
             <p class="max-min-temp"><span class="material-symbols-outlined"> upgrade </span>: <span id="max-temp"></span>°C</p>
             <p class="max-min-temp"><span class="material-symbols-outlined" id="minTempUnit"> upgrade </span>: <span id="min-temp"></span>°C</p>
+          </li>
+          <li class="forecast-day mx-2 px-4 d-flex flex-column">
+            <p class="forecast-detail">Humidity</p>
+            <p><span id="humidityData" class="detail"></span>%</p>
+            <p>Normal <span>🤜</span></p>
+          </li>
+          <li class="forecast-day mx-2 px-3 d-flex flex-column">
+            <p class="forecast-detail">Sunrise & Sunset</p>
+            <p><span class="material-symbols-outlined sunriseIcon"> wb_twilight </span> <span id="sunRise" class="sunrise-set-time"></span> <span class="timeUnit">AM</span></p>
+            <p><span class="material-symbols-outlined sunsetIcon"> wb_twilight </span> <span id="sunSet" class="sunrise-set-time"></span> <span class="timeUnit">PM</span></p>
           </li>
         </ul>
       </section>
