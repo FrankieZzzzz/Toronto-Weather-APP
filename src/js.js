@@ -1,6 +1,6 @@
+//weather api key 
 let apiKey = "b68e523348f19ea792b0abbee994f51c";
-let SheCodeApiKey = "9a4fe4bodeba6ca823c48bdb74t03dbe"
-
+//get current location
 function _getCurrentLocation(position){
     let latCode = position.coords.latitude;
     let lonCode = position.coords.longitude;
@@ -8,6 +8,7 @@ function _getCurrentLocation(position){
     axios.get(apiLocatUrl).then(_displayLocation);  
 }
 navigator.geolocation.getCurrentPosition(_getCurrentLocation);
+
 //search engine
 function _searchCity(event){
     event.preventDefault();
@@ -26,8 +27,8 @@ let inputSearch = document.querySelector("#search-bar").addEventListener("moused
     xIcon.addEventListener("click",function(e){
         e.target.previousElementSibling.value = ""
         xIcon.style.display = "none"
-    })
-    })
+    })})
+
 //********************************** */
 //show city weather on the page
 function _displayLocation(response){
@@ -40,7 +41,6 @@ function _displayLocation(response){
     celsiusTemp = response.data.main.temp;
     let currentCity = response.data.name;
     let currentCountry = response.data.sys.country;
-    console.log(response.data);
     let currentCityTemp = celsiusTemp;
     currentCityTemp = Math.round(currentCityTemp);
     let description = response.data.weather[0].description;
@@ -54,7 +54,6 @@ function _displayLocation(response){
     dayMaxTemp = Math.round(dayMaxTemp);
     let dayMinTemp = response.data.main.temp_min;
     dayMinTemp = Math.round(dayMinTemp);
-    console.log(response.data);
     //sunrise and set time
     let sunRiseTime = new Date(response.data.sys.sunrise * 1000)
     let sunSetTime = new Date(response.data.sys.sunset * 1000)
@@ -75,10 +74,9 @@ function _displayLocation(response){
     
     //set photo gallery
     let unsplashKey = "C3l2wm2Z54GRQ75bhadpUU5IvPQYrO5TeSJZJ3WkL48"
-    let unsplashUrl = `https://api.unsplash.com/search/photos?page=1&orientation=landscape&query=${currentCity}&client_id=${unsplashKey}`;
+    let unsplashUrl = `https://api.unsplash.com/search/photos?&orientation=landscape&query=${currentCity}&client_id=${unsplashKey}`;
     axios.get(unsplashUrl).then(_displayImg)
     function _displayImg(response){
-        console.log(response.data);
         let imgLinkUrl = response.data.results[2].urls.full;
         let imgDescribetion = response.data.results[2].description;
         // console.log(imgLinkUrl);
@@ -87,7 +85,6 @@ function _displayLocation(response){
         dispalyCityImg.setAttribute("alt", imgDescribetion)
     }
     
-        
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
     let displayImgCity = document.querySelector("#insertCityName").innerHTML = currentCity
@@ -101,8 +98,12 @@ function _displayLocation(response){
 
     let windData = document.querySelector("#windData").innerHTML = cityWindData;
 
-    let humidityData = document.querySelector("#humidityData").innerHTML = cityHumidityData
-
+    if(cityHumidityData < 50){
+        let humidityData = document.querySelector("#humidityData").innerHTML = `<span class="material-symbols-outlined humidityIcon">rainy_light</span> ${cityHumidityData} %`;
+    }else{
+        let humidityData = document.querySelector("#humidityData").innerHTML = `<span class="material-symbols-outlined humidityIcon">rainy_heavy</span> ${cityHumidityData} %`;
+    }
+    
     let aPressure = document.querySelector("#weather-pressure").innerHTML = pressure;
 
     let maxTemp = document.querySelector("#max-temp").innerHTML = dayMaxTemp;
@@ -118,7 +119,6 @@ function _displayLocation(response){
 }
 
 let currentLocationBtn = document.querySelector("#getCurrentLocation").addEventListener("mousedown", _searchCity)
-
 
 //********************************** */
 //weather forecast data
@@ -158,23 +158,6 @@ function _displayForecast(response){
     let weatherForecastBox = document.querySelector("#weather-forecast");
     weatherForecastBox.innerHTML = forecastContent;
 }
-//********************************** */
-//get current time
-//get time data
-let current = new Date();
-let monthes = ["Janurary", "Feburary", "March", "April", "May", "Jun", "July", "August", "September", "Octorber","Norvenber", "December"];
-let weekdays = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-let currentDate = weekdays[current.getDay()];
-let currentDay = current.getDate();
-let currentMonth = monthes[current.getMonth()];
-let currentYear = current.getFullYear();
-let currentTime = current.toLocaleTimeString('en-US',{hour:'numeric', minute: 'numeric'})
-
-//change innerHTML
-let pageDate = document.querySelector("#current-date").innerHTML = currentDate;
-let pageMonth = document.querySelector("#weather-current-date").innerHTML = (`${currentMonth} ${currentDay}, ${currentYear}`);
-let pageTime = document.querySelector("#current-time").innerHTML = currentTime;
-
 //click C/F change temperature setting
 function _changeTempF(event){
     event.preventDefault();
@@ -214,3 +197,43 @@ let fahrenheitBtn = document.getElementById("fahrenheit");
     fahrenheitBtn.addEventListener("click", _changeTempF);
 let celsiusBtn = document.getElementById("celsius");
     celsiusBtn.addEventListener("click", _changeTempC);
+
+//********************************** */
+//get current time
+//get time data
+let current = new Date();
+let monthes = ["Janurary", "Feburary", "March", "April", "May", "Jun", "July", "August", "September", "Octorber","Norvenber", "December"];
+let weekdays = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+let currentDate = weekdays[current.getDay()];
+let currentDay = current.getDate();
+let currentMonth = monthes[current.getMonth()];
+let currentYear = current.getFullYear();
+let currentTime = current.toLocaleTimeString('en-US',{hour:'numeric', minute: 'numeric'})
+
+//change innerHTML
+let pageDate = document.querySelector("#current-date").innerHTML = currentDate;
+let pageMonth = document.querySelector("#weather-current-date").innerHTML = (`${currentMonth} ${currentDay}, ${currentYear}`);
+let pageTime = document.querySelector("#current-time").innerHTML = currentTime;
+
+
+//switch dark mode button
+const d = new Date();
+const hours = d.getHours();   
+const night = hours >= 19 || hours <= 7; 
+const body = document.querySelector('body');
+const toggle = document.getElementById('toggle');
+const input = document.getElementById('switch');
+// between 7pm and 7am show dark mode
+  if (night) {
+    input.checked = true;
+    body.classList.add('night');
+  }
+// click button function
+  toggle.addEventListener('click', function() {
+    const isChecked = input.checked;
+    if (isChecked) {
+      body.classList.remove('night');
+    } else {
+      body.classList.add('night');
+    }
+  });
