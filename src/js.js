@@ -9,15 +9,25 @@ function _getCurrentLocation(position){
 }
 navigator.geolocation.getCurrentPosition(_getCurrentLocation);
 //search engine
-let searchBtn = document.querySelector("#search-Btn").addEventListener("click", _searchCity)
 function _searchCity(event){
     event.preventDefault();
     let searchCity = document.querySelector("#search-bar").value;
     let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
     axios.get(apiLocatUrl).then(_displayLocation);
 }
+let searchBtn = document.querySelector("#searchBtn-icon").addEventListener("click", _searchCity)
 window.addEventListener("load", _displayLocation);
 
+//click form input get x icon
+let inputSearch = document.querySelector("#search-bar").addEventListener("mousedown", function(){
+    let xIcon = document.querySelector("#data-clear-input");
+    xIcon.style.display = "inline"
+    //click x icon clean search content
+    xIcon.addEventListener("click",function(e){
+        e.target.previousElementSibling.value = ""
+        xIcon.style.display = "none"
+    })
+    })
 //********************************** */
 //show city weather on the page
 function _displayLocation(response){
@@ -44,7 +54,7 @@ function _displayLocation(response){
     dayMaxTemp = Math.round(dayMaxTemp);
     let dayMinTemp = response.data.main.temp_min;
     dayMinTemp = Math.round(dayMinTemp);
-
+    console.log(response.data);
     //sunrise and set time
     let sunRiseTime = new Date(response.data.sys.sunrise * 1000)
     let sunSetTime = new Date(response.data.sys.sunset * 1000)
@@ -69,17 +79,18 @@ function _displayLocation(response){
     axios.get(unsplashUrl).then(_displayImg)
     function _displayImg(response){
         console.log(response.data);
-        let imgLinkUrl = response.data.results[0].urls.full;
-        let imgDescribetion = response.data.results[0].description;
+        let imgLinkUrl = response.data.results[2].urls.full;
+        let imgDescribetion = response.data.results[2].description;
         // console.log(imgLinkUrl);
         let dispalyCityImg = document.querySelector("#displayImgGalery")
         dispalyCityImg.setAttribute("src", imgLinkUrl)
         dispalyCityImg.setAttribute("alt", imgDescribetion)
     }
+    
         
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
-
+    let displayImgCity = document.querySelector("#insertCityName").innerHTML = currentCity
     let displayCityTemp = document.querySelector("#main-temp").innerHTML = currentCityTemp;
 
     let rightSideLocation = document.querySelector(".inputLocation").innerHTML = currentCity;
@@ -105,6 +116,10 @@ function _displayLocation(response){
     let countryName = document.querySelector("#current-country").innerHTML = currentCountry;
     _getForecast(response.data.coord)
 }
+
+let currentLocationBtn = document.querySelector("#getCurrentLocation").addEventListener("mousedown", _searchCity)
+
+
 //********************************** */
 //weather forecast data
 function _getForecast(coordinates){
@@ -121,7 +136,7 @@ function _formatDay(timeFormat){
 //weather forecast add html
 function _displayForecast(response){
     let forecastData = response.data.daily;
-    let forecastDataHourly = response.data.hourly;
+    // let forecastDataHourly = response.data.hourly;
     
     let forecastContent = "";
     forecastData.forEach(function(dailyData, index){
