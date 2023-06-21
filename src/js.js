@@ -79,11 +79,36 @@ function _displayLocation(response){
     function _displayImg(response){
         let imgLinkUrl = response.data.results[2].urls.full;
         let imgDescribetion = response.data.results[2].description;
-        // console.log(imgLinkUrl);
+        console.log(imgLinkUrl);
         let dispalyCityImg = document.querySelector("#displayImgGalery")
         dispalyCityImg.setAttribute("src", imgLinkUrl)
         dispalyCityImg.setAttribute("alt", imgDescribetion)
     }
+    //I try to use if else to decide if city url not working then I switch to use Country url. But it is not working.
+    //Like search an area "Downsview" in toronto.
+    // let unsplashKey = "C3l2wm2Z54GRQ75bhadpUU5IvPQYrO5TeSJZJ3WkL48";
+    // let unsplashUrl = `https://api.unsplash.com/search/photos?&orientation=landscape&query=${currentCity}&client_id=${unsplashKey}`;
+    // axios.get(unsplashUrl).then(_displayImg)
+    // function _displayImg(response){
+    //     if (unsplashUrl = true){
+    //         let imgLinkUrl = response.data.results[2].urls.full;
+    //         let imgDescribetion = response.data.results[2].description;
+    //         console.log(imgLinkUrl);
+    //         let dispalyCityImg = document.querySelector("#displayImgGalery")
+    //         dispalyCityImg.setAttribute("src", imgLinkUrl)
+    //         dispalyCityImg.setAttribute("alt", imgDescribetion)
+    //     }else{
+    //     let unsplashUrlCountry = `https://api.unsplash.com/search/photos?&orientation=landscape&query=${currentCountry}&client_id=${unsplashKey}`;
+    //     axios.get(unsplashUrlCountry).then(_displayCountryImg)
+    //     function _displayCountryImg(response){
+    //         let imgLinkUrl = response.data.results[2].urls.full;
+    //         let imgDescribetion = response.data.results[2].description;
+    //         console.log(imgLinkUrl);
+    //         let dispalyCityImg = document.querySelector("#displayImgGalery")
+    //         dispalyCityImg.setAttribute("src", imgLinkUrl)
+    //         dispalyCityImg.setAttribute("alt", imgDescribetion)
+    //     }
+    // }}
     
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
