@@ -1,10 +1,12 @@
 //weather api key 
 let apiKey = "b68e523348f19ea792b0abbee994f51c";
 //get current location
+let newUnit = "metric"
 function _getCurrentLocation(position){
     let latCode = position.coords.latitude;
     let lonCode = position.coords.longitude;
-    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=metric`;
+    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=${newUnit ? newUnit : "metric"}`;
+    
     axios.get(apiLocatUrl).then(_displayLocation);  
 }
 navigator.geolocation.getCurrentPosition(_getCurrentLocation);
@@ -13,7 +15,8 @@ navigator.geolocation.getCurrentPosition(_getCurrentLocation);
 function _searchCity(event){
     event.preventDefault();
     let searchCity = document.querySelector("#search-bar").value;
-    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${apiKey}`;
+    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=${newUnit ? newUnit : "metric"}&appid=${apiKey}`;
+    
     axios.get(apiLocatUrl).then(_displayLocation);
 }
 let searchBtn = document.querySelector("#searchBtn-icon").addEventListener("click", _searchCity)
@@ -84,35 +87,9 @@ function _displayLocation(response){
         dispalyCityImg.setAttribute("src", imgLinkUrl)
         dispalyCityImg.setAttribute("alt", imgDescribetion)
     }
-    //I try to use if else to decide if city url not working then I switch to use Country url. But it is not working.
-    //Like search an area "Downsview" in toronto.
-    // let unsplashKey = "C3l2wm2Z54GRQ75bhadpUU5IvPQYrO5TeSJZJ3WkL48";
-    // let unsplashUrl = `https://api.unsplash.com/search/photos?&orientation=landscape&query=${currentCity}&client_id=${unsplashKey}`;
-    // axios.get(unsplashUrl).then(_displayImg)
-    // function _displayImg(response){
-    //     if (unsplashUrl = true){
-    //         let imgLinkUrl = response.data.results[2].urls.full;
-    //         let imgDescribetion = response.data.results[2].description;
-    //         console.log(imgLinkUrl);
-    //         let dispalyCityImg = document.querySelector("#displayImgGalery")
-    //         dispalyCityImg.setAttribute("src", imgLinkUrl)
-    //         dispalyCityImg.setAttribute("alt", imgDescribetion)
-    //     }else{
-    //     let unsplashUrlCountry = `https://api.unsplash.com/search/photos?&orientation=landscape&query=${currentCountry}&client_id=${unsplashKey}`;
-    //     axios.get(unsplashUrlCountry).then(_displayCountryImg)
-    //     function _displayCountryImg(response){
-    //         let imgLinkUrl = response.data.results[2].urls.full;
-    //         let imgDescribetion = response.data.results[2].description;
-    //         console.log(imgLinkUrl);
-    //         let dispalyCityImg = document.querySelector("#displayImgGalery")
-    //         dispalyCityImg.setAttribute("src", imgLinkUrl)
-    //         dispalyCityImg.setAttribute("alt", imgDescribetion)
-    //     }
-    // }}
-    
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
-    let displayImgCity = document.querySelector("#insertCityName").innerHTML = currentCity
+
     let displayCityTemp = document.querySelector("#main-temp").innerHTML = currentCityTemp;
 
     let rightSideLocation = document.querySelector(".inputLocation").innerHTML = currentCity;
@@ -149,7 +126,7 @@ let currentLocationBtn = document.querySelector("#getCurrentLocation").addEventL
 //weather forecast data
 function _getForecast(coordinates){
     let oneCallApiKey = "ebef9ca4a8de66ed586fac628fade056"
-    let weatherForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${oneCallApiKey}&units=metric`
+    let weatherForecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${oneCallApiKey}&units=${newUnit ? newUnit : "metric"}`
     axios.get(weatherForecastUrl).then(_displayForecast);
 }
 function _formatDay(timeFormat){
@@ -189,30 +166,20 @@ function _changeTempF(event){
     let temp = document.querySelector("#main-temp");
     let fTemp = Math.round((celsiusTemp * 9) / 5 + 32);
     temp.textContent = fTemp;
-    fahrenheitBtn.classList.add("active")
-    celsiusBtn.classList.remove("active")
+    fahrenheitBtn.classList.add("active");
+    celsiusBtn.classList.remove("active");
 
-    let forecastListMax = document.querySelector("#weather-temp-max");
-    let fForecastTemp = Math.round((maxTempForecast * 9) / 5 + 32);
-    forecastListMax.innerHTML = fForecastTemp;
-
-    let forecastListMin = document.querySelector("#weather-temp-min")
-    let cForecastTemp = Math.round((minTempForecast * 9) / 5 + 32);
-    forecastListMin.innerHTML = cForecastTemp;
+    newUnit = "imperial"
+    _searchCity(event)
 }
 function _changeTempC(event){
     event.preventDefault();
     let temp = document.querySelector("#main-temp");
     temp.textContent = Math.round(celsiusTemp);   
-    fahrenheitBtn.classList.remove("active")
-    celsiusBtn.classList.add("active")
-
-    let forecastListMax = document.querySelector("#weather-temp-max");
-    forecastListMax.innerHTML = Math.round(maxTempForecast);  
-    
-    let forecastListMin = document.querySelector("#weather-temp-min")
-    forecastListMin.innerHTML = Math.round(minTempForecast);  
-
+    fahrenheitBtn.classList.remove("active");
+    celsiusBtn.classList.add("active");
+    newUnit = "metric"
+    _searchCity(event)
 };
 let celsiusTemp = null;
 let maxTempForecast = null;
@@ -239,7 +206,6 @@ let currentTime = current.toLocaleTimeString('en-US',{hour:'numeric', minute: 'n
 let pageDate = document.querySelector("#current-date").innerHTML = currentDate;
 let pageMonth = document.querySelector("#weather-current-date").innerHTML = (`${currentMonth} ${currentDay}, ${currentYear}`);
 let pageTime = document.querySelector("#current-time").innerHTML = currentTime;
-
 
 //switch dark mode button
 const d = new Date();
