@@ -2,25 +2,68 @@
 let apiKey = "b68e523348f19ea792b0abbee994f51c";
 //get current location
 let newUnit = "metric"
+navigator.geolocation.getCurrentPosition(_getCurrentLocation);
 function _getCurrentLocation(position){
     let latCode = position.coords.latitude;
     let lonCode = position.coords.longitude;
+    globalLat = position.coords.latitude;
+    globalLon = position.coords.longitude;
     let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=${newUnit ? newUnit : "metric"}`;
     
     axios.get(apiLocatUrl).then(_displayLocation);  
 }
-navigator.geolocation.getCurrentPosition(_getCurrentLocation);
 
 //search engine
 function _searchCity(event){
     event.preventDefault();
     let searchCity = document.querySelector("#search-bar").value;
-    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=${newUnit ? newUnit : "metric"}&appid=${apiKey}`;
-    
+    if (searchCity === ""){
+    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${globalLat}&lon=${globalLon}&units=${newUnit ? newUnit : "metric"}&appid=${apiKey}`;
     axios.get(apiLocatUrl).then(_displayLocation);
-}
+    }else{
+    let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=${newUnit ? newUnit : "metric"}&appid=${apiKey}`;
+     axios.get(apiLocatUrl).then(_displayLocation);
+}}
 let searchBtn = document.querySelector("#searchBtn-icon").addEventListener("click", _searchCity)
-window.addEventListener("load", _displayLocation);
+// window.addEventListener("load", _displayLocation);
+
+//click C/F change temperature setting
+function _changeTempF(event){
+    event.preventDefault();
+    let temp = document.querySelector("#main-temp");
+    let fTemp = Math.round((celsiusTemp * 9) / 5 + 32);
+    // let feelsLikeUnit = document.querySelector("#weather-feeling-unit")
+    // feelsLikeUnit.innerHTML = F;
+    temp.textContent = fTemp;
+    fahrenheitBtn.classList.add("active");
+    celsiusBtn.classList.remove("active");
+
+    newUnit = "imperial"
+    _searchCity(event)
+}
+function _changeTempC(event){
+    event.preventDefault();
+    let temp = document.querySelector("#main-temp");
+    // let feelsLikeUnit = document.querySelector("#weather-feeling-unit")
+    // feelsLikeUnit.innerHTML = C;
+    temp.textContent = Math.round(celsiusTemp);   
+    fahrenheitBtn.classList.remove("active");
+    celsiusBtn.classList.add("active");
+    newUnit = "metric"
+    _searchCity(event)
+    
+};
+
+let fahrenheitBtn = document.getElementById("fahrenheit");
+    fahrenheitBtn.addEventListener("click", _changeTempF);
+let celsiusBtn = document.getElementById("celsius");
+    celsiusBtn.addEventListener("click", _changeTempC);
+
+let celsiusTemp = null;
+let maxTempForecast = null;
+let minTempForecast = null;
+let globalLon = null;
+let globalLat = null;
 
 //click form input get x icon
 let inputSearch = document.querySelector("#search-bar").addEventListener("mousedown", function(){
@@ -32,6 +75,7 @@ let inputSearch = document.querySelector("#search-bar").addEventListener("moused
         xIcon.style.display = "none"
     })})
 
+    
 //********************************** */
 //show city weather on the page
 function _displayLocation(response){
@@ -86,6 +130,7 @@ function _displayLocation(response){
         let dispalyCityImg = document.querySelector("#displayImgGalery")
         dispalyCityImg.setAttribute("src", imgLinkUrl)
         dispalyCityImg.setAttribute("alt", imgDescribetion)
+        let insertCity = document.querySelector("#insertCityName").innerHTML = currentCity;
     }
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
@@ -160,35 +205,8 @@ function _displayForecast(response){
     let weatherForecastBox = document.querySelector("#weather-forecast");
     weatherForecastBox.innerHTML = forecastContent;
 }
-//click C/F change temperature setting
-function _changeTempF(event){
-    event.preventDefault();
-    let temp = document.querySelector("#main-temp");
-    let fTemp = Math.round((celsiusTemp * 9) / 5 + 32);
-    temp.textContent = fTemp;
-    fahrenheitBtn.classList.add("active");
-    celsiusBtn.classList.remove("active");
 
-    newUnit = "imperial"
-    _searchCity(event)
-}
-function _changeTempC(event){
-    event.preventDefault();
-    let temp = document.querySelector("#main-temp");
-    temp.textContent = Math.round(celsiusTemp);   
-    fahrenheitBtn.classList.remove("active");
-    celsiusBtn.classList.add("active");
-    newUnit = "metric"
-    _searchCity(event)
-};
-let celsiusTemp = null;
-let maxTempForecast = null;
-let minTempForecast = null;
 
-let fahrenheitBtn = document.getElementById("fahrenheit");
-    fahrenheitBtn.addEventListener("click", _changeTempF);
-let celsiusBtn = document.getElementById("celsius");
-    celsiusBtn.addEventListener("click", _changeTempC);
 
 //********************************** */
 //get current time
