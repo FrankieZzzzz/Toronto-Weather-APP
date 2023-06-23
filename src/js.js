@@ -186,7 +186,7 @@ function _displayForecast(response){
         minTempForecast = dailyData.temp.min;
         if(index < 8){
         forecastContent = forecastContent + `
-        <div class="forecast-seven-day  ">
+        <div class="forecast-seven-day ">
             <div id="forecast-seven-day-detail">   
                 <p>${_formatDay(dailyData.dt)}</p>
                 <img src="https://openweathermap.org/img/wn/${dailyData.weather[0].icon}@2x.png" alt="">

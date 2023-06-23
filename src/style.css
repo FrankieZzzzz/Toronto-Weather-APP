@@ -168,7 +168,6 @@ body{
 #weather-box-right-top{
     width: 80%;
     padding:0px;
-    width: 90%;
     margin-top: 2%;
 }
 .right-top-small-title{
@@ -308,7 +307,6 @@ body{
     width: 30.5%;
     height: 95%;
     font-size: 13px;
-    
 }
 .weather-detail-list li p{
     padding-left: 3%;
@@ -534,7 +532,6 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         padding-left: 0%;
     }
     #search-form {
-        cursor: pointer;
         padding-top: 20px;
     }
     #data-clear-input {
@@ -658,5 +655,99 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     .switch-wrapper .sun {
         width: 14vw;
         height: 10vh;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .container {
+        width: 90%;
+    }
+    #search-bar {
+        width: 75%;
+        margin-left: 6%;
+    }
+    #data-clear-input {
+        top:30px;
+        right: 70px;
+    }
+    #current-city{
+        font-size: 10vw;
+    }
+    #current-country {
+        font-size: 4vw;
+    }
+    .switch-wrapper .moon,
+    .switch-wrapper .sun {
+        width: 55%;
+        height: 3vh;
+    }
+    #weather-box-right {
+        height: 100%;
+        width: 100%;
+    }
+    #weather-box-right-top {
+        width: 100%;
+        padding: 0px;
+        margin-top: 5%;
+    }
+    #brand-logo-name{
+        display: none;
+    }
+    .switch-wrapper .toggle-wrapper label {
+        width: 25px;
+        height: 15px;
+    }
+    .switch-wrapper .toggle-wrapper label:after {
+        width: 10px;
+        height: 10px;
+    }
+    .switch-wrapper .moon,
+    .switch-wrapper .sun {
+        width: 4vw;
+        height: 6vh;
+    }
+    #weather-forecast {
+        display: grid;
+        grid-template-columns: repeat(1, 90%);
+        gap: 1.5%;
+    }
+    .forecast-seven-day{
+        display: flex; 
+        flex-direction: row;  
+        padding: 12px 0px;
+        margin: 0px 0%;
+    }
+        #weather-forecast-temp {
+            margin-top: 0px;
+        }
+    .forecast-seven-day div img {
+        width: 10vw;
+    }
+    #weather-detail {
+        width: 50%;
+        height: 50%;
+        font-size: 18px;
+        margin: 30% 0px;
+    }
+    .weather-detail-list {
+        display: grid;
+        grid-template-columns: repeat(1, 98%);
+        gap: 1%;
+    }
+    .weather-detail-list li {
+        height: 200px;
+        width: 94%;
+        margin: 2% 0px;
+    }
+    #secondList{
+        margin: 6% 0px 12% 0px;
+    }
+    .detail {
+        font-size: 8vw;
+    }
+    .sunrise-set-time,
+    #max-temp,
+    #min-temp{
+        font-size: 8vw;
     }
 }
