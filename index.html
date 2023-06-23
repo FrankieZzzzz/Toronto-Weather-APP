@@ -24,13 +24,16 @@
     <title>Vanilla-Weather-APP</title>
   </head>
   <body>
-    <div class="container row mx-auto p-0 ps-3 mt-5">
+    <div class="container row mx-auto p-0 mt-5">
       <!-- left side content -->
-      <section id="weather-box-left" class="col-3 mt-3 ps-4">
+      <section id="weather-box-left" class="col-lg-3 mt-3">
         <form action="" method="get" class="mb-3 ms-2" id="search-form">
-          <input type="text" class="border-0 rounded-5" id="search-bar" placeholder="Search for place" autocomplete="off" />
-          <span id="data-clear-input">&times;</span>
-          <button id="searchBtn-icon"><i class="fa-solid fa-magnifying-glass ps-2" id="search-icon"></i></button>
+          <p class="col-5" id="topTitle">Toronto Forecast</p>
+          <div>
+            <input type="text" class="border-0 rounded-5" id="search-bar" placeholder="Search for place" autocomplete="off" />
+            <span id="data-clear-input">&times;</span>
+            <button id="searchBtn-icon"><i class="fa-solid fa-magnifying-glass ps-2" id="search-icon"></i></button>
+          </div>
         </form>
         <div id="current-location">
           <span id="current-city"></span>
@@ -56,16 +59,16 @@
             <span class="time-zone" id="current-time"></span>
           </li>
         </ul>
-        <hr class="me-3" id="left-side-line" />
+        <hr id="left-side-line" />
         <div class="weather-detail-img">
           <a class="d-flex" id="imgForecastLink" href="#">
-            <img class="col-12" src="" alt="" id="displayImgGalery" />
+            <img src="" alt="" id="displayImgGalery" />
             <span id="insertCityName"></span>
           </a>
         </div>
       </section>
       <!-- right side content -->
-      <section id="weather-box-right" class="container col-9 row m-0">
+      <section id="weather-box-right" class="container col-lg-9 row m-0">
         <nav class="d-flex ms-5 align-items-center" id="weather-box-right-top">
           <p class="col-5" id="brand-logo-name">Toronto Forecast</p>
           <i class="col-0 pe-2 fa-solid fa-location-dot" id="getCurrentLocation"></i>
@@ -84,7 +87,7 @@
           </div>
         </nav>
         <!-- 7 days forecast -->
-        <div id="weather-forecast" class="row"></div>
+        <div id="weather-forecast"></div>
         <!--daily weather detail-->
         <p class="ms-5 mb-0" id="weather-detail">Weather Detail</p>
         <!-- top three box -->

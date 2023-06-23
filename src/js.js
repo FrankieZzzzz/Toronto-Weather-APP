@@ -9,7 +9,6 @@ function _getCurrentLocation(position){
     globalLat = position.coords.latitude;
     globalLon = position.coords.longitude;
     let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=${newUnit ? newUnit : "metric"}`;
-    
     axios.get(apiLocatUrl).then(_displayLocation);  
 }
 
@@ -49,9 +48,9 @@ function _changeTempC(event){
     temp.textContent = Math.round(celsiusTemp);   
     fahrenheitBtn.classList.remove("active");
     celsiusBtn.classList.add("active");
+
     newUnit = "metric"
     _searchCity(event)
-    
 };
 
 let fahrenheitBtn = document.getElementById("fahrenheit");
@@ -75,7 +74,6 @@ let inputSearch = document.querySelector("#search-bar").addEventListener("moused
         xIcon.style.display = "none"
     })})
 
-    
 //********************************** */
 //show city weather on the page
 function _displayLocation(response){
@@ -164,7 +162,6 @@ function _displayLocation(response){
     let countryName = document.querySelector("#current-country").innerHTML = currentCountry;
     _getForecast(response.data.coord)
 }
-
 let currentLocationBtn = document.querySelector("#getCurrentLocation").addEventListener("mousedown", _searchCity)
 
 //********************************** */
@@ -183,19 +180,19 @@ function _formatDay(timeFormat){
 //weather forecast add html
 function _displayForecast(response){
     let forecastData = response.data.daily;
-    // let forecastDataHourly = response.data.hourly;
-    
     let forecastContent = "";
     forecastData.forEach(function(dailyData, index){
         maxTempForecast = dailyData.temp.max;
         minTempForecast = dailyData.temp.min;
-        if(index < 7){
+        if(index < 8){
         forecastContent = forecastContent + `
-        <div class="forecast-day mx-1 px-4 d-flex flex-column justify-content-center">
-            <p>${_formatDay(dailyData.dt)}</p>
-            <img src="https://openweathermap.org/img/wn/${dailyData.weather[0].icon}@2x.png" alt="">
+        <div class="forecast-seven-day  ">
+            <div id="forecast-seven-day-detail">   
+                <p>${_formatDay(dailyData.dt)}</p>
+                <img src="https://openweathermap.org/img/wn/${dailyData.weather[0].icon}@2x.png" alt="">
+            </div>
             <div id="weather-forecast-temp">
-                <span id="weather-temp-max">${Math.round(dailyData.temp.max)}°</span> /
+                <span id="weather-temp-max">${Math.round(dailyData.temp.max)}°</span> |
                 <span id="weather-temp-min">${Math.round(dailyData.temp.min)}°</span>
             </div>
         </div>
