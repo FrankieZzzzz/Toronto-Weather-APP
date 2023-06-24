@@ -116,7 +116,7 @@ body{
     opacity: 0.1;
 }
 .weather-detail-img {
-    margin-top: 14%;
+    margin-top: 5%;
     position: relative;
     margin-right: 10px;
 }
@@ -519,9 +519,6 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         font-size: 1.4vw;
         position: relative;
         top: 3px;
-    }
-    .weather-detail-img {
-        margin-top: 14%;
     }
     #displayImgGalery {
         height: 12vh;
