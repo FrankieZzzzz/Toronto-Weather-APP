@@ -727,6 +727,9 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     #current-country {
         font-size: 4vw;
     }
+        .temp {
+            top: 12%;
+        }
     #weather-box-right {
         height: 100%;
         width: 100%;
@@ -763,9 +766,9 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         padding: 12px 0px;
         margin: 0px 0%;
     }
-        #weather-forecast-temp {
-            margin-top: 0px;
-        }
+    #weather-forecast-temp {
+        margin-top: 0px;
+    }
     .forecast-seven-day div img {
         width: 10vw;
     }
