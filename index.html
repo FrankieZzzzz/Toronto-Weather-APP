@@ -69,15 +69,15 @@
       </section>
       <!-- right side content -->
       <section id="weather-box-right" class="container col-lg-9 row m-0">
-        <nav class="d-flex ms-5 align-items-center" id="weather-box-right-top">
+        <nav id="weather-box-right-top">
           <p class="col-5" id="brand-logo-name">Toronto Forecast</p>
-          <i class="col-0 pe-2 fa-solid fa-location-dot" id="getCurrentLocation"></i>
-          <p class="col-5 right-top-small-title">
+          <div class="col-lg-4 right-top-small-title">
+            <i class="col-0 pe-2 fa-solid fa-location-dot" id="getCurrentLocation"></i>
             <span class="cnBtn">Weather in</span>
             <span class="inputLocation"></span>
-          </p>
+          </div>
           <!-- dark mode switch button -->
-          <div class="switch-wrapper col-2">
+          <div class="switch-wrapper">
             <div class="sun"></div>
             <div class="toggle-wrapper">
               <input id="switch" type="checkbox" />

@@ -94,6 +94,9 @@ function _displayLocation(response){
     let pressure = response.data.main.pressure;
     let cityWindData = response.data.wind.speed;
     cityWindData = Math.round(cityWindData);
+    console.log(cityWindData);
+    console.log( response.data);
+
     let cityHumidityData = response.data.main.humidity;
     let dayMaxTemp = response.data.main.temp_max;
     dayMaxTemp = Math.round(dayMaxTemp);
@@ -202,8 +205,6 @@ function _displayForecast(response){
     let weatherForecastBox = document.querySelector("#weather-forecast");
     weatherForecastBox.innerHTML = forecastContent;
 }
-
-
 
 //********************************** */
 //get current time

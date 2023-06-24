@@ -1,4 +1,5 @@
 body{
+    width: 100vw;
     font-family: 'Roboto', sans-serif;
     background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(207, 214, 231) 90%);
     background-repeat: no-repeat;
@@ -161,20 +162,30 @@ body{
 /* **************** */
 /* rightside box */
 #weather-box-right{
+    padding-top: 3%;
+    display: flex;
+    justify-content: space-evenly;
     height: 100vh;
     background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(232, 237, 248) 90%);
-    
 }
 #weather-box-right-top{
-    width: 80%;
+    width: 100%;
+    /* border: 1px solid red; */
+    width: 82%;
     padding:0px;
-    margin-top: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .right-top-small-title{
+    width: 40%;
     font-size: 12px;
     margin-bottom: 0em;
+    /* border: 1px solid red; */
 }
 #brand-logo-name{
+    width: 50%;
+    /* border: 1px solid red; */
     font-size: 20px;
     font-weight: 500;
     font-style: italic;
@@ -186,9 +197,9 @@ body{
 }
 /* switch Btn */
 .switch-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 30%;
+     display: flex;
+    align-items: center; 
 }
 .switch-wrapper .moon,
 .switch-wrapper .sun {
@@ -254,6 +265,7 @@ body{
     grid-template-columns: repeat(8, 12%);
     justify-content: center;
     align-items: center;
+    margin-bottom: 5%;
 }
 .forecast-seven-day{
     background: white;
@@ -288,6 +300,8 @@ body{
 }
 /* weather detail */
 #weather-detail{
+    width: 86%;
+    height: 5%;
     font-size: 18px;
     font-weight: 400;
     color: #48484A;
@@ -437,21 +451,27 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         font-size: 1vw;
         color: #48484A;
     }
+    #weather-box-right {
+        padding-top: 2.4%;
+    }
     #weather-box-right-top {
-        margin-top: 4%;
+        margin-top: 3%;
         width: 85%;
     }
     .detail {
         font-size: 3vw;
     }
-        .sunrise-set-time,
-        #max-temp,
-        #min-temp {
-            font-size: 3vw;
-        }
+    .sunrise-set-time,
+    #max-temp,
+    #min-temp {
+        font-size: 3vw;
+    }
 }
 
 @media only screen and (max-width: 1200px) {
+    body{
+        width: 100%;
+    }
     #weather-box-left {
         margin-top: 10%;
     }
@@ -511,18 +531,41 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     .forecast-day {
         width: 12%;
     }
-    .forecast-day {
-        width: 12%;
-    }
     .switch-wrapper{
         margin-left: 5%;
     }
-    #weather-box-right-top {
-        margin-top: 4%;
-        width: 80%;
+    #weather-box-right{
+        padding-top: 2.5%;
     }
+    #weather-box-right-top {
+        height: 3%;
+        margin-top: 0%;
+        width: 80%;
+        margin: 50px auto 0px auto;
+    }
+    .switch-wrapper .toggle-wrapper label {
+        width: 32px;
+        height: 17px;
+    }
+
+    .switch-wrapper .toggle-wrapper label:after {
+        width: 10px;
+        height: 10px;
+    }
+    .switch-wrapper .moon,
+    .switch-wrapper .sun {
+        width: 1.5vw;
+        height: 6vh;
+    }
+        #weather-forecast{
+            height: 30%;
+        }
+        #weather-forecast{
+            height: 10%;
+        }
 }
 @media only screen and (max-width: 992px) {
+    
     .container{
         width: 100vw;
     }
@@ -562,13 +605,10 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         font-size: 15.2vw;
         color: #48484A;
     }
-
     #temp-list {
         width: 38%;
         margin: 0px auto;
         padding-left: 0%;
-        /* border: 1px solid red; */
-        
     }
     .temp {
         font-size: 2.6vw;
@@ -615,11 +655,18 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
        border-radius: 10px;
    }
     #weather-forecast {
+        /* border: 1px solid red; */
         display: grid;
         grid-template-columns: repeat(4, 24%);
         grid-row: 10px;
         justify-content: center;
         align-items: center;
+        gap: 10px;
+    }
+    #weather-box-right-top{
+        margin-top: 5%;
+        /* border: 1px solid red; */
+        width: 90%;
     }
     #forecast-seven-day-detail{
         display: flex;
@@ -630,11 +677,9 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         margin-bottom: 0px;
     }
     #weather-detail {
-        margin-top: 10%;
-        font-size: 18px;
-        font-weight: 400;
-        color: #48484A;
-        font-style: italic;
+        margin-top: 15%;
+        width: 98%;
+        height: 10px;
     }
     .switch-wrapper .moon,
     .switch-wrapper .sun {
@@ -649,16 +694,22 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     #min-temp {
         font-size: 4vw;
     }
+    .forecast-detail {
+        padding-top: 18%;
+    }
 }
 @media only screen and (max-width: 768px) {
-    .switch-wrapper .moon,
-    .switch-wrapper .sun {
-        width: 14vw;
-        height: 10vh;
-    }
+        .switch-wrapper .moon,
+        .switch-wrapper .sun {
+            width: 2.8vw;
+            height: 6vh;
+        }
 }
 
 @media only screen and (max-width: 420px) {
+    body {
+        width: 100vw;
+        }
     .container {
         width: 90%;
     }
@@ -676,20 +727,15 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     #current-country {
         font-size: 4vw;
     }
-    .switch-wrapper .moon,
-    .switch-wrapper .sun {
-        width: 55%;
-        height: 3vh;
-    }
     #weather-box-right {
         height: 100%;
         width: 100%;
     }
     #weather-box-right-top {
-        width: 100%;
-        padding: 0px;
-        margin-top: 5%;
+        width: 80%;
+        height: 20%;
     }
+    
     #brand-logo-name{
         display: none;
     }
@@ -698,8 +744,8 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         height: 15px;
     }
     .switch-wrapper .toggle-wrapper label:after {
-        width: 10px;
-        height: 10px;
+        width: 9px;
+        height: 9px;
     }
     .switch-wrapper .moon,
     .switch-wrapper .sun {
