@@ -160,7 +160,7 @@ body{
 /* **************** */
 /* rightside box */
 #weather-box-right{
-    padding-top: 3%;
+    padding-top: 2%;
     display: flex;
     justify-content: space-evenly;
     height: 100vh;
@@ -532,6 +532,11 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     #weather-box-right{
         padding-top: 2.5%;
     }
+    #weather-detail {
+        margin-top: 2%;
+        width: 85%;
+        height: 20px;
+    }
     #weather-box-right-top {
         height: 3%;
         margin-top: 0%;
@@ -649,6 +654,11 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
        object-fit: cover;
        border-radius: 10px;
    }
+   #weather-detail {
+       margin-top: 15%;
+       width: 88%;
+       height: 20px;
+   }
     #weather-forecast {
         /* border: 1px solid red; */
         display: grid;
@@ -673,8 +683,8 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     }
     #weather-detail {
         margin-top: 15%;
-        width: 98%;
-        height: 10px;
+        width: 90%;
+        height: 20px;
     }
     .switch-wrapper .moon,
     .switch-wrapper .sun {
@@ -768,10 +778,11 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         width: 10vw;
     }
     #weather-detail {
-        width: 50%;
+        width: 45%;
         height: 50%;
         font-size: 18px;
-        margin: 30% 0px;
+        margin: 30% auto;
+        /* border: 1px solid red; */
     }
     .weather-detail-list {
         display: grid;
