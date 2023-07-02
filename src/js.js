@@ -11,7 +11,6 @@ function _getCurrentLocation(position){
     let apiLocatUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latCode}&lon=${lonCode}&appid=${apiKey}&units=${newUnit ? newUnit : "metric"}`;
     axios.get(apiLocatUrl).then(_displayLocation);  
 }
-
 //search engine
 function _searchCity(event){
     event.preventDefault();
@@ -31,24 +30,18 @@ function _changeTempF(event){
     event.preventDefault();
     let temp = document.querySelector("#main-temp");
     let fTemp = Math.round((celsiusTemp * 9) / 5 + 32);
-    // let feelsLikeUnit = document.querySelector("#weather-feeling-unit")
-    // feelsLikeUnit.innerHTML = F;
     temp.textContent = fTemp;
     fahrenheitBtn.classList.add("active");
     celsiusBtn.classList.remove("active");
-
     newUnit = "imperial"
     _searchCity(event)
 }
 function _changeTempC(event){
     event.preventDefault();
     let temp = document.querySelector("#main-temp");
-    // let feelsLikeUnit = document.querySelector("#weather-feeling-unit")
-    // feelsLikeUnit.innerHTML = C;
     temp.textContent = Math.round(celsiusTemp);   
     fahrenheitBtn.classList.remove("active");
     celsiusBtn.classList.add("active");
-
     newUnit = "metric"
     _searchCity(event)
 };
@@ -135,15 +128,10 @@ function _displayLocation(response){
     }
     //get html element
     let displayCity = document.querySelector("#current-city").innerHTML = currentCity;
-
     let displayCityTemp = document.querySelector("#main-temp").innerHTML = currentCityTemp;
-
     let rightSideLocation = document.querySelector(".inputLocation").innerHTML = currentCity;
-
     let descriptionToday = document.querySelector("#weather-description").innerHTML = description;
-
     let feelTemperature = document.querySelector("#weather-feeling-temp").innerHTML = feelTemp;
-
     let windData = document.querySelector("#windData").innerHTML = cityWindData;
 
     if(cityHumidityData < 50){
@@ -153,15 +141,10 @@ function _displayLocation(response){
     }
     
     let aPressure = document.querySelector("#weather-pressure").innerHTML = pressure;
-
     let maxTemp = document.querySelector("#max-temp").innerHTML = dayMaxTemp;
-
     let minTemp = document.querySelector("#min-temp").innerHTML = dayMinTemp;
-
     let sunriseTime = document.querySelector("#sunRise").innerHTML = riseTime;
-
     let sunsetTime = document.querySelector("#sunSet").innerHTML = setTime;
-
     let countryName = document.querySelector("#current-country").innerHTML = currentCountry;
     _getForecast(response.data.coord)
 }
@@ -207,20 +190,12 @@ function _displayForecast(response){
 }
 
 //********************************** */
-//get current time
-//get time data
-let current = new Date();
-let monthes = ["Janurary", "Feburary", "March", "April", "May", "Jun", "July", "August", "September", "Octorber","Norvenber", "December"];
-let weekdays = ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-let currentDate = weekdays[current.getDay()];
-let currentDay = current.getDate();
-let currentMonth = monthes[current.getMonth()];
-let currentYear = current.getFullYear();
-let currentTime = current.toLocaleTimeString('en-US',{hour:'numeric', minute: 'numeric'})
+//Update time js code with moment library
+let currentDate = moment().format("MMMM DD YYYY")
+let currentTime = moment().format("dddd, hh:mm A")
 
-//change innerHTML
-let pageDate = document.querySelector("#current-date").innerHTML = currentDate;
-let pageMonth = document.querySelector("#weather-current-date").innerHTML = (`${currentMonth} ${currentDay}, ${currentYear}`);
+// //change innerHTML
+let pageDate = document.querySelector("#weather-current-date").innerHTML = currentDate;
 let pageTime = document.querySelector("#current-time").innerHTML = currentTime;
 
 //switch dark mode button
