@@ -670,7 +670,6 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
     }
     #weather-box-right-top{
         margin-top: 5%;
-        /* border: 1px solid red; */
         width: 90%;
     }
     #forecast-seven-day-detail{
@@ -682,7 +681,7 @@ body.night .container #weather-box-right .weather-detail-list .forecast-day {
         margin-bottom: 0px;
     }
     #weather-detail {
-        margin-top: 15%;
+        margin-top: 10%;
         width: 90%;
         height: 20px;
     }
