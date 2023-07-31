@@ -26,109 +26,115 @@
     <title>Vanilla-Weather-APP</title>
   </head>
   <body>
-    <div class="container row mx-auto p-0 mt-5">
-      <!-- left side content -->
-      <section id="weather-box-left" class="col-lg-3 mt-3">
-        <form action="" method="get" class="mb-3 ms-2" id="search-form">
-          <p class="col-5" id="topTitle">Toronto Forecast</p>
-          <div>
-            <input type="text" class="border-0 rounded-5" id="search-bar" placeholder="Search for place" autocomplete="off" />
-            <span id="data-clear-input">&times;</span>
-            <button id="searchBtn-icon"><i class="fa-solid fa-magnifying-glass ps-2" id="search-icon"></i></button>
-          </div>
-        </form>
-        <div id="current-location">
-          <span id="current-city"></span>
-          <span id="current-country"> </span>
-        </div>
-        <img src="" alt="heroImg" id="weather-box-left-img" />
-        <ul class="fw-light d-flex" id="temp-list">
-          <li id="main-temp"></li>
-          <li>
-            <a href="#" class="temp temp-unit active" id="celsius">°C</a>
-            <span class="temp">|</span>
-            <a href="#" class="temp temp-unit" id="fahrenheit">°F</a>
-          </li>
-        </ul>
-        <ul id="weather-box-left-detail" class="pt-2">
-          <li class="pt-4"><span class="material-symbols-outlined leftSideIcon"> sentiment_satisfied </span> Feels Like: <span id="weather-feeling-temp"></span>°</li>
-          <li>
-            <span class="material-symbols-outlined leftSideIcon"> calendar_month </span>
-            <span id="weather-current-date"></span>
-          </li>
-          <li id="weather-box-left-date">
-            <div id="current-date"></div>
-            <div class="time-zone" id="current-time"></div>
-          </li>
-        </ul>
-        <hr id="left-side-line" />
-        <div class="weather-detail-img">
-          <a class="d-flex" id="imgForecastLink" href="#">
-            <img src="" alt="" id="displayImgGalery" />
-            <span id="insertCityName"></span>
-          </a>
-        </div>
-      </section>
-      <!-- right side content -->
-      <section id="weather-box-right" class="container col-lg-9 row m-0">
-        <nav id="weather-box-right-top">
-          <p class="col-5" id="brand-logo-name">Toronto Forecast</p>
-          <div class="col-lg-4 right-top-small-title">
-            <i class="col-0 pe-2 fa-solid fa-location-dot" id="getCurrentLocation"></i>
-            <span class="cnBtn">Weather in</span>
-            <span class="inputLocation"></span>
-          </div>
-          <!-- dark mode switch button -->
-          <div class="switch-wrapper">
-            <div class="sun"></div>
-            <div class="toggle-wrapper">
-              <input id="switch" type="checkbox" />
-              <label for="switch" id="toggle">Toggle</label>
+    <div>
+      <div class="container row mx-auto p-0 mt-5">
+        <!-- left side content -->
+        <section id="weather-box-left" class="col-lg-3 mt-3">
+          <form action="" method="get" class="mb-3 ms-2" id="search-form">
+            <p class="col-5" id="topTitle">Toronto Forecast</p>
+            <div>
+              <input type="text" class="border-0 rounded-5" id="search-bar" placeholder="Search for place" autocomplete="off" />
+              <span id="data-clear-input">&times;</span>
+              <button id="searchBtn-icon"><i class="fa-solid fa-magnifying-glass ps-2" id="search-icon"></i></button>
             </div>
-            <div class="moon"></div>
+          </form>
+          <div id="current-location">
+            <span id="current-city"></span>
+            <span id="current-country"> </span>
           </div>
-        </nav>
-        <!-- 7 days forecast -->
-        <div id="weather-forecast"></div>
-        <!--daily weather detail-->
-        <p class="mb-0" id="weather-detail">Weather Detail</p>
-        <!-- top three box -->
-        <ul class="weather-detail-list">
-          <li class="forecast-day mx-2 px-4 d-flex flex-column newbackground">
-            <p class="forecast-detail">Humidity</p>
-            <p><span id="humidityData" class="detail"></span></p>
-            <p></p>
-          </li>
-          <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
-            <p class="forecast-detail">Temperature Max | Min</p>
-            <p class="max-min-temp"><span class="material-symbols-outlined"> upgrade </span>: <span id="max-temp"></span>°C</p>
-            <p class="max-min-temp"><span class="material-symbols-outlined" id="minTempUnit"> upgrade </span>: <span id="min-temp"></span>°C</p>
-          </li>
-          <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
-            <p class="forecast-detail">Sunrise & Sunset</p>
-            <p><span class="material-symbols-outlined sunriseIcon"> wb_twilight </span> <span id="sunRise" class="sunrise-set-time"></span> <span class="timeUnit"></span>AM</p>
-            <p><span class="material-symbols-outlined sunsetIcon"> wb_twilight </span> <span id="sunSet" class="sunrise-set-time"></span> <span class="timeUnit"></span>PM</p>
-          </li>
-        </ul>
-        <!-- bottom three box -->
-        <ul class="weather-detail-list" id="secondList">
-          <li class="forecast-day mx-2 px-4 d-flex flex-column newbackground">
-            <p class="forecast-detail">Weather Description</p>
-            <p><span class="detail" id="weather-description"></span></p>
-          </li>
-          <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
-            <p class="forecast-detail">Pressure</p>
-            <p><span id="weather-pressure" class="detail"></span> hPa</p>
-          </li>
-          <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
-            <p class="forecast-detail">Wind Speed</p>
-            <p class="speedDetial"><span class="detail" id="windData"></span> km/h</p>
-          </li>
-        </ul>
-      </section>
+          <img src="" alt="heroImg" id="weather-box-left-img" />
+          <ul class="fw-light d-flex" id="temp-list">
+            <li id="main-temp"></li>
+            <li>
+              <a href="#" class="temp temp-unit active" id="celsius">°C</a>
+              <span class="temp">|</span>
+              <a href="#" class="temp temp-unit" id="fahrenheit">°F</a>
+            </li>
+          </ul>
+          <ul id="weather-box-left-detail" class="pt-2">
+            <li class="pt-4"><span class="material-symbols-outlined leftSideIcon"> sentiment_satisfied </span> Feels Like: <span id="weather-feeling-temp"></span>°</li>
+            <li>
+              <span class="material-symbols-outlined leftSideIcon"> calendar_month </span>
+              <span id="weather-current-date"></span>
+            </li>
+            <li id="weather-box-left-date">
+              <div id="current-date"></div>
+              <div class="time-zone" id="current-time"></div>
+            </li>
+          </ul>
+          <hr id="left-side-line" />
+          <div class="weather-detail-img">
+            <a class="d-flex" id="imgForecastLink" href="#">
+              <img src="" alt="" id="displayImgGalery" />
+              <span id="insertCityName"></span>
+            </a>
+          </div>
+        </section>
+        <!-- right side content -->
+        <section id="weather-box-right" class="container col-lg-9 row m-0">
+          <nav id="weather-box-right-top">
+            <p class="col-5" id="brand-logo-name">Toronto Forecast</p>
+            <div class="col-lg-4 right-top-small-title">
+              <i class="col-0 pe-2 fa-solid fa-location-dot" id="getCurrentLocation"></i>
+              <span class="cnBtn">Weather in</span>
+              <span class="inputLocation"></span>
+            </div>
+            <!-- dark mode switch button -->
+            <div class="switch-wrapper">
+              <div class="sun"></div>
+              <div class="toggle-wrapper">
+                <input id="switch" type="checkbox" />
+                <label for="switch" id="toggle">Toggle</label>
+              </div>
+              <div class="moon"></div>
+            </div>
+          </nav>
+          <!-- 7 days forecast -->
+          <div id="weather-forecast"></div>
+          <!--daily weather detail-->
+          <p class="mb-0" id="weather-detail">Weather Detail</p>
+          <!-- top three box -->
+          <ul class="weather-detail-list">
+            <li class="forecast-day mx-2 px-4 d-flex flex-column newbackground">
+              <p class="forecast-detail">Humidity</p>
+              <p><span id="humidityData" class="detail"></span></p>
+              <p></p>
+            </li>
+            <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
+              <p class="forecast-detail">Temperature Max | Min</p>
+              <p class="max-min-temp"><span class="material-symbols-outlined"> upgrade </span>: <span id="max-temp"></span>°C</p>
+              <p class="max-min-temp"><span class="material-symbols-outlined" id="minTempUnit"> upgrade </span>: <span id="min-temp"></span>°C</p>
+            </li>
+            <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
+              <p class="forecast-detail">Sunrise & Sunset</p>
+              <p><span class="material-symbols-outlined sunriseIcon"> wb_twilight </span> <span id="sunRise" class="sunrise-set-time"></span> <span class="timeUnit"></span>AM</p>
+              <p><span class="material-symbols-outlined sunsetIcon"> wb_twilight </span> <span id="sunSet" class="sunrise-set-time"></span> <span class="timeUnit"></span>PM</p>
+            </li>
+          </ul>
+          <!-- bottom three box -->
+          <ul class="weather-detail-list" id="secondList">
+            <li class="forecast-day mx-2 px-4 d-flex flex-column newbackground">
+              <p class="forecast-detail">Weather Description</p>
+              <p><span class="detail" id="weather-description"></span></p>
+            </li>
+            <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
+              <p class="forecast-detail">Pressure</p>
+              <p><span id="weather-pressure" class="detail"></span> hPa</p>
+            </li>
+            <li class="forecast-day mx-2 px-3 d-flex flex-column newbackground">
+              <p class="forecast-detail">Wind Speed</p>
+              <p class="speedDetial"><span class="detail" id="windData"></span> km/h</p>
+            </li>
+          </ul>
+        </section>
+      </div>
+      
+      <!-- bottom author link -->
+        <footer>
+             <p id="button-sign">Loosely designed in <span>Figma</span> and coded in <span>Visual Studio Code</span>. Open sourced on <a href="https://github.com/FrankieZzzzz/Toronto-Weather-APP">GitHub</a> and deployed with <span>Netlify</span></p>
+        </footer>
     </div>
-    <!-- bottom author link -->
-    <p id="button-sign"><a href="https://github.com/FrankieZzzzz/Vanilla-Weather-APP"> Open-source code</a> by Frankie Zhong</p>
+    
     <script src="src/js.js"></script>
   </body>
 </html>
